@@ -2,7 +2,7 @@
 
 function App() {
   return (
-    <div>eCommerce App 3</div>
+    <div>Home Page</div>
   );
 }
 
