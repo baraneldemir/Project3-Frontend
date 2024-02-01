@@ -1,9 +1,8 @@
-import logo from './logo.svg';
-import './App.css';
+
 
 function App() {
   return (
-    <div>eCommerce App</div>
+    <div>eCommerce App 2</div>
   );
 }
 
