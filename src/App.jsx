@@ -1,12 +1,13 @@
+import HomePage from "./Pages/HomePage";
 
 
 function App() {
   return (
-    <>
-      <div>eCommerce App 3</div>
-      <h1>barans change</h1>
-    </>
-  );
+    <HomePage />
+  )
 }
 
 export default App;
+
+
+ 
