@@ -1,8 +1,10 @@
-
+import PayPal from "./PayPal/PayPal";
 
 function App() {
   return (
-    <div>Home Page</div>
+    <div>
+      <PayPal/>
+    </div>
   );
 }
 
