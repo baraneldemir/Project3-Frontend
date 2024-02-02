@@ -2,10 +2,19 @@
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
+import LoginFormModal from './LoginFormModal/LoginFormModal'
+import { useState } from 'react';
+import { Button } from 'react-bootstrap';
+import SignUpFormModal from './SignUpFormModal/SignUpFormModal';
+
 
 export default function NavBar() {
+
+  const [showLoginFormModal, setShowLoginFormModal] = useState(false)
+  const [showSignupFormModal, setShowSignupFormModal] = useState(false)
     
     return (
+      <>
         <Navbar bg="dark" data-bs-theme="dark">
           <Container>
             <Navbar.Brand >Cosmic Collectables</Navbar.Brand>
@@ -36,11 +45,17 @@ export default function NavBar() {
                         />
             </Navbar.Brand>
               <Navbar.Text>
-                Signed in as: Baran
+                <Button variant="secondary" onClick={() => setShowLoginFormModal(true)}>Log in</Button>
+                &nbsp;
+                &nbsp;
+                <Button variant="secondary" onClick={() => setShowSignupFormModal(true)}>Sign up</Button>
               </Navbar.Text>
             </Navbar.Collapse>
           </Container>
         </Navbar>
+        <LoginFormModal show={showLoginFormModal} handleClose={() => setShowLoginFormModal(false)} />
+        <SignUpFormModal show={showSignupFormModal} handleClose={() => setShowSignupFormModal(false)}/>
+        </>
       );
     }
   
