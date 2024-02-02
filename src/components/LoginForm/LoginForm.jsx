@@ -1,44 +1,26 @@
-import { useState } from 'react';
-import * as usersService from '../../utilities/users-service';
+import { Modal, Form, Button } from "react-bootstrap";
 
-export default function LoginForm({ setUser }) {
-  const [credentials, setCredentials] = useState({
-    email: '',
-    password: ''
-  });
-  const [error, setError] = useState('');
-
-  function handleChange(evt) {
-    setCredentials({ ...credentials, [evt.target.name]: evt.target.value });
-    setError('');
-  }
-
-  async function handleSubmit(evt) {
-    // Prevent form from being submitted to the server
-    evt.preventDefault();
-    try {
-      // The promise returned by the signUp service method 
-      // will resolve to the user object included in the
-      // payload of the JSON Web Token (JWT)
-      const user = await usersService.login(credentials);
-      setUser(user);
-    } catch {
-      setError('Log In Failed - Try Again');
-    }
-  }
-
+export default function LoginForm({ handleClose, show }) {
   return (
-    <div>
-      <div className="form-container">
-        <form autoComplete="off" onSubmit={handleSubmit}>
-          <label>Email</label>
-          <input type="text" name="email" value={credentials.email} onChange={handleChange} required />
-          <label>Password</label>
-          <input type="password" name="password" value={credentials.password} onChange={handleChange} required />
-          <button type="submit">LOG IN</button>
-        </form>
-      </div>
-      <p className="error-message">&nbsp;{error}</p>
-    </div>
+    <Modal show={show} onHide={handleClose} style={{ color: "Red" }}>
+      <Modal.Header closeButton>
+        <Modal.Title>Login Form</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <Form>
+          <Form.Group controlId="formBasicEmail">
+            <Form.Label>User Name</Form.Label>
+            <Form.Control type="text" placeholder="Enter your username" required />
+          </Form.Group>
+
+          <Form.Group controlId="formBasicPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control type="password" placeholder="Password" required />
+          </Form.Group>
+
+          <Button variant="primary" type="submit">Submit</Button>
+        </Form>
+      </Modal.Body>
+    </Modal>
   );
 }

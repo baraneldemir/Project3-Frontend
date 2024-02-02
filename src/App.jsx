@@ -1,13 +1,15 @@
-import HomePage from "./Pages/HomePage";
 import PayPal from "./PayPal/PayPal";
+import NavBar from "./components/NavBar.jsx";
 
 function App() {
   return (
     <>
-    <HomePage />
+    <NavBar />
   
     <div>
       <PayPal/>
+      
+     
     </div>
     </>
   );
