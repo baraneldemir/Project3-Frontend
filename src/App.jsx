@@ -3,11 +3,13 @@ import PayPal from "./PayPal/PayPal";
 
 function App() {
   return (
+    <>
     <HomePage />
-  )
+  
     <div>
       <PayPal/>
     </div>
+    </>
   );
 }
 
