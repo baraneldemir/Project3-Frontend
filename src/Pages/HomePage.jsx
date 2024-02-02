@@ -1,10 +1,10 @@
-import NavBar from "../components/NavBar"
+
+import Slide from "../components/Slide/Slide"
 
 export default function HomePage() {
   return (
-    <>
-        <NavBar />
-        <div>HomePage</div>
+    <>    
+        <Slide />
     </>
   )
 }
