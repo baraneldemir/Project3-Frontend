@@ -8,8 +8,11 @@ import ContactusPage from "./pages/ContacusPage/ContactusPage.jsx";
 import { useState } from "react";
 
 
+
+
 function App() {
   const [user, setUser] = useState(null)
+
   return (
     <>
       <NavBar user={ user } setUser={setUser} />
@@ -20,7 +23,7 @@ function App() {
             <Route path="/contactus" element={ <ContactusPage /> }/>
         </Routes>
       <div>
-      <PayPal/>    
+        <PayPal/>    
       </div>
     </>
   )

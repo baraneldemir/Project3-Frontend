@@ -1,16 +1,39 @@
-import { Card, Button } from 'react-bootstrap'
+import ProductCard from "../../components/ProductCard/ProductCard";
+import { Container, Stack } from "react-bootstrap";
+import { useEffect } from "react";
+import { useProducts } from "../../contexts/ProductContext";
 
 export default function ProductsPage() {
+
+  const {products, getProducts} = useProducts()
+
+  useEffect(() => {
+    getProducts()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   return (
-    <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
-      <Card.Body>
-        <Card.Title>Product 1</Card.Title>
-        <Card.Text>Price: 100</Card.Text>
-      </Card.Body>
-      <Card.Footer>
-        <Button variant="primary">Go somewhere</Button>
-      </Card.Footer>
-    </Card>
+    <Container className='my-4'>
+      <Stack direction="horizontal" gap="2" className="mb-4">
+      <h1 className='me-auto'>Products</h1>
+      </Stack>
+      <div style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
+              gap: "1rem",
+              alignItems: "flex-start"
+              }}
+      >{products.map( product => {
+        return (
+          <ProductCard 
+          key={product._id}
+          name={product.name}
+          image={product.image}
+          price={product.price}
+          />
+        )
+      })}</div>
+
+    </Container>
   )
 }
