@@ -3,19 +3,14 @@ import { Container, Stack } from "react-bootstrap";
 import { useEffect } from "react";
 import { useProducts } from "../../contexts/ProductContext";
 
-
-
 export default function ProductsPage() {
 
-
   const {products, getProducts} = useProducts()
-
 
   useEffect(() => {
     getProducts()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-
 
   return (
     <Container className='my-4'>

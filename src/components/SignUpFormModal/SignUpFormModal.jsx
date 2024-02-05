@@ -1,77 +1,58 @@
-import { Button, Form, Modal } from "react-bootstrap"
-import { useRef } from "react"
-import axios from "axios"
+import { Button, Form, Modal } from "react-bootstrap";
+import { useState, useRef } from "react";
+import { signUp } from '../../utilities/users-service';
 
+export default function SignUpForm({ setUser, show, handleClose }) {
+  const fullNameRef = useRef();
+  const emailRef = useRef();
+  const passwordRef = useRef();
 
-export default function SignUpFormModal({show, handleClose}) {
-    const fullNameRef = useRef()
-    const emailRef = useRef()
-    const passwordRef = useRef()
+  const [error, setError] = useState('');
 
-    async function addSignUp(newUser) {
-        console.log(newUser);
-        try {
-        
-           
-            const response = await axios.post(
-            `${process.env.REACT_APP_BACKEND_URL}/users/new`,
-            newUser
-            );
-            
-            console.log(response);
-        } catch (e) {
-            console.error("Error adding SignUp", e);
-        }
+  const handleSubmit = async (evt) => {
+    evt.preventDefault();
+    try {
+      const userFormData = {
+        name: fullNameRef.current.value,
+        email: emailRef.current.value,
+        password: passwordRef.current.value,
+      };
+
+      const user = await signUp(userFormData);
+      setUser(user);
+      handleClose(); // Close the modal after successful sign-up
+    } catch {
+      setError('Sign Up Failed - Try Again');
     }
-
-    async function checkSession(userId) {
-        try {
-            const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/users/${userId}`);
-            return response.data !== null; 
-        } catch (error) {
-            console.error("Error checking session:", error);
-            return false;
-        }
-    }
-    
-
-    async function handleSubmit(e) {
-        const newUser = {
-        fullname: fullNameRef.current.value, 
-        email: emailRef.current.value, 
-        password: passwordRef.current.value
-        }        
-        e.preventDefault()  
-        addSignUp(newUser) 
-        handleClose()   
-        
-    }
-
+  };
 
   return (
     <Modal show={show} onHide={handleClose}>
-        <Form onSubmit={handleSubmit}>
-            <Modal.Header closeButton>
-                <Modal.Title>Sign Up</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-                <Form.Group className="mb-3" controlId="name">
-                    <Form.Label>Full Name</Form.Label>
-                    <Form.Control ref={fullNameRef} type="text" required />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="name">
-                    <Form.Label>Email</Form.Label>
-                    <Form.Control ref={emailRef} type="text" required />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="name">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control ref={passwordRef} type="password" required />
-                </Form.Group>
-                <div className="d-flex justify-content-end">
-                    <Button variant="secondary" type="submit">Add</Button>
-                </div>
-            </Modal.Body>
-        </Form>
+      <Form onSubmit={handleSubmit}>
+        <Modal.Header closeButton>
+          <Modal.Title>Sign Up</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form.Group className="mb-3" controlId="name">
+            <Form.Label>Full Name</Form.Label>
+            <Form.Control type="text" ref={fullNameRef} required />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="email">
+            <Form.Label>Email</Form.Label>
+            <Form.Control type="email" ref={emailRef} required />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="password">
+            <Form.Label>Password</Form.Label>
+            <Form.Control type="password" ref={passwordRef} required />
+          </Form.Group>
+          <div className="d-flex justify-content-end">
+            <Button variant="secondary" type="submit">
+              Sign Up
+            </Button>
+          </div>
+        </Modal.Body>
+      </Form>
+      <p className="error-message">&nbsp;{error}</p>
     </Modal>
-  )
+  );
 }

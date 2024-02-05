@@ -6,16 +6,17 @@ import ProductsPage from "./pages/ProductsPage/ProductsPage.jsx";
 import AboutusPage from "./pages/AboutusPage/AboutusPage.jsx";
 import ContactusPage from "./pages/ContacusPage/ContactusPage.jsx";
 import { useState } from "react";
+import { getUser } from './utilities/users-service.js'
 
 
 
 
 function App() {
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState(getUser())
 
   return (
     <>
-      <NavBar user={ user } setUser={setUser} />
+      <NavBar user={user} setUser={setUser} />
         <Routes>
             <Route path="/" element={ <HomePage />}/>
             <Route path="/products" element={ <ProductsPage /> }/>

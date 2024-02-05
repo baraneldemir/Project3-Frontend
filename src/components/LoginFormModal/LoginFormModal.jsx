@@ -1,60 +1,68 @@
-import { Button, Form, Modal } from "react-bootstrap"
-import axios from "axios";
-import { useRef } from "react"
+import { useState } from 'react';
+import { Modal, Form, Button } from 'react-bootstrap';
+import * as usersService from '../../utilities/users-service';
 
+export default function LoginFormModal({ setUser, show, handleClose }) {
+  const [credentials, setCredentials] = useState({
+    email: '',
+    password: ''
+  });
 
+  const [error, setError] = useState('');
 
-export default function LoginFormModal({show, handleClose}) {
-    const fullNameRef = useRef()
-    const emailRef = useRef()
-    const passwordRef = useRef()
+  function handleChange(evt) {
+    setCredentials({ ...credentials, [evt.target.name]: evt.target.value });
+    setError('');
+  }
 
-    async function addLogIn(user) {
-        console.log(user)
-        try {
-          const response = await axios.post(
-            `${process.env.REACT_APP_BACKEND_URL}/users/`,
-            user
-          );
-          console.log(response)
-        } catch (e) {
-          console.error("Error adding SignIn", e);
-        }
-      }
-
-    async function handleSubmit(e) {
-        const user = {
-        fullname: fullNameRef.current.value, 
-        email: emailRef.current.value, 
-        password: passwordRef.current.value
-        }        
-        e.preventDefault()  
-        addLogIn(user) 
-        handleClose()   
-        
+  async function handleSubmit(evt) {
+    evt.preventDefault();
+    try {
+      const user = await usersService.login(credentials);
+      console.log('Login successful. User:', user);
+      setUser(user);
+      handleClose()
+    } catch {
+      console.error('Login failed. Error:', error);
+      setError('Log In Failed - Try Again');
     }
+  }
+
   return (
     <Modal show={show} onHide={handleClose}>
-        <Form onSubmit={handleSubmit}>
-            <Modal.Header closeButton>
-                <Modal.Title>Log In</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-                <Form.Group className="mb-3" controlId="name">
-                    <Form.Label>Email</Form.Label>
-                    <Form.Control  type="text" required />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="name">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" required />
-                </Form.Group>
-                <div className="d-flex justify-content-end">
-                    <Button variant="secondary" type="submit">Add</Button>
-                </div>
-            </Modal.Body>
-        </Form>
+      <Form onSubmit={handleSubmit}>
+        <Modal.Header closeButton>
+          <Modal.Title>Log In</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form.Group className="mb-3" controlId="email">
+            <Form.Label>Email</Form.Label>
+            <Form.Control
+              type="email"
+              name="email"
+              value={credentials.email}
+              onChange={handleChange}
+              required
+            />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="password">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              type="password"
+              name="password"
+              value={credentials.password}
+              onChange={handleChange}
+              required
+            />
+          </Form.Group>
+          <div className="d-flex justify-content-end">
+            <Button variant="secondary" type="submit">
+              Log In
+            </Button>
+          </div>
+        </Modal.Body>
+      </Form>
+      <p className="error-message">&nbsp;{error}</p>
     </Modal>
-  )
+  );
 }
-
-
