@@ -1,11 +1,36 @@
 import { Button, Form, Modal } from "react-bootstrap"
+import axios from "axios";
+import { useRef } from "react"
+
 
 
 export default function LoginFormModal({show, handleClose}) {
+    const fullNameRef = useRef()
+    const emailRef = useRef()
+    const passwordRef = useRef()
+
+    async function addLogIn(user) {
+        console.log(user)
+        try {
+          const response = await axios.post(
+            `${process.env.REACT_APP_BACKEND_URL}/users/`,
+            user
+          );
+          console.log(response)
+        } catch (e) {
+          console.error("Error adding SignIn", e);
+        }
+      }
 
     async function handleSubmit(e) {
-        
-        e.preventDefault()
+        const user = {
+        fullname: fullNameRef.current.value, 
+        email: emailRef.current.value, 
+        password: passwordRef.current.value
+        }        
+        e.preventDefault()  
+        addLogIn(user) 
+        handleClose()   
         
     }
   return (
