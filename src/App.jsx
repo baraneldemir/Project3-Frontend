@@ -1,5 +1,5 @@
 import PayPal from "./PayPal/PayPal";
-import HomePage from "../src/Pages/HomePage.jsx"
+import HomePage from "./pages/HomePage.jsx"
 import NavBar from "./components/NavBar.jsx";
 function App() {
   return (

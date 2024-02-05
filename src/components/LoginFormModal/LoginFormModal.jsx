@@ -46,7 +46,7 @@ export default function LoginFormModal({show, handleClose}) {
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="name">
                     <Form.Label>Password</Form.Label>
-                    <Form.Control type="text" required />
+                    <Form.Control type="password" required />
                 </Form.Group>
                 <div className="d-flex justify-content-end">
                     <Button variant="secondary" type="submit">Add</Button>

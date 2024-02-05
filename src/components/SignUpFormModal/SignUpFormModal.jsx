@@ -8,17 +8,25 @@ export default function SignUpFormModal({show, handleClose}) {
     const passwordRef = useRef()
 
     async function addSignUp(newUser) {
-        console.log(newUser)
+        console.log(newUser);
         try {
-          const response = await axios.post(
+            // const existingId = await axios.get (
+            //     `${process.env.REACT_APP_BACKEND_URL}/users/${newUser._id}`
+            // )
+            // console.log('Id exists:', existingId)
+            // if (existingId.data)
+            // return;
+           
+            const response = await axios.post(
             `${process.env.REACT_APP_BACKEND_URL}/users/new`,
             newUser
-          );
-          console.log(response)
+            );
+            console.log(response);
         } catch (e) {
-          console.error("Error adding SignUp", e);
+            console.error("Error adding SignUp", e);
         }
-      }
+    }
+    
 
     async function handleSubmit(e) {
         const newUser = {
@@ -50,7 +58,7 @@ export default function SignUpFormModal({show, handleClose}) {
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="name">
                     <Form.Label>Password</Form.Label>
-                    <Form.Control ref={passwordRef} type="text" required />
+                    <Form.Control ref={passwordRef} type="password" required />
                 </Form.Group>
                 <div className="d-flex justify-content-end">
                     <Button variant="secondary" type="submit">Add</Button>
