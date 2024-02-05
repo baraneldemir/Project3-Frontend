@@ -1,16 +1,37 @@
 import { Button, Form, Modal } from "react-bootstrap"
 import { useRef } from "react"
+import axios from "axios"
 
 export default function SignUpFormModal({show, handleClose}) {
     const fullNameRef = useRef()
     const emailRef = useRef()
     const passwordRef = useRef()
 
+    async function addSignUp(newUser) {
+        console.log(newUser)
+        try {
+          const response = await axios.post(
+            `${process.env.REACT_APP_BACKEND_URL}/users/new`,
+            newUser
+          );
+          console.log(response)
+        } catch (e) {
+          console.error("Error adding SignUp", e);
+        }
+      }
+
     async function handleSubmit(e) {
-        
-        e.preventDefault()
+        const newUser = {
+        fullname: fullNameRef.current.value, 
+        email: emailRef.current.value, 
+        password: passwordRef.current.value
+        }        
+        e.preventDefault()  
+        addSignUp(newUser) 
+        handleClose()   
         
     }
+
 
   return (
     <Modal show={show} onHide={handleClose}>
