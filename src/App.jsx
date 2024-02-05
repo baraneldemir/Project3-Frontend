@@ -8,19 +8,22 @@ import ContactusPage from "./pages/ContacusPage/ContactusPage.jsx";
 import { useState } from "react";
 
 
+
+
 function App() {
   const [user, setUser] = useState(null)
+
   return (
     <>
       <NavBar user={ user } setUser={setUser} />
         <Routes>
-            <Route path="/home" element={ <HomePage />}/>
+            <Route path="/" element={ <HomePage />}/>
             <Route path="/products" element={ <ProductsPage /> }/>
             <Route path="/aboutus" element={ <AboutusPage /> }/>
             <Route path="/contactus" element={ <ContactusPage /> }/>
         </Routes>
       <div>
-      <PayPal/>    
+        <PayPal/>    
       </div>
     </>
   )

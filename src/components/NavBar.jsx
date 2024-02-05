@@ -20,7 +20,7 @@ export default function NavBar() {
             <Navbar.Brand >Cosmic Collectables</Navbar.Brand>
             <Navbar.Toggle />
                 <Nav>
-                <Nav.Link as={Link} to="/home">Home</Nav.Link>
+                <Nav.Link as={Link} to="/">Home</Nav.Link>
                 <Nav.Link as={Link} to="/products">Products</Nav.Link>
                 <Nav.Link as={Link} to="/aboutus">About Us</Nav.Link>
                 <Nav.Link as={Link} to="/contactus">Contact Us</Nav.Link>
