@@ -2,6 +2,7 @@ import { Button, Form, Modal } from "react-bootstrap"
 import { useRef } from "react"
 import axios from "axios"
 
+
 export default function SignUpFormModal({show, handleClose}) {
     const fullNameRef = useRef()
     const emailRef = useRef()
@@ -10,20 +11,26 @@ export default function SignUpFormModal({show, handleClose}) {
     async function addSignUp(newUser) {
         console.log(newUser);
         try {
-            // const existingId = await axios.get (
-            //     `${process.env.REACT_APP_BACKEND_URL}/users/${newUser._id}`
-            // )
-            // console.log('Id exists:', existingId)
-            // if (existingId.data)
-            // return;
+        
            
             const response = await axios.post(
             `${process.env.REACT_APP_BACKEND_URL}/users/new`,
             newUser
             );
+            
             console.log(response);
         } catch (e) {
             console.error("Error adding SignUp", e);
+        }
+    }
+
+    async function checkSession(userId) {
+        try {
+            const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/users/${userId}`);
+            return response.data !== null; 
+        } catch (error) {
+            console.error("Error checking session:", error);
+            return false;
         }
     }
     
