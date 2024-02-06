@@ -11,6 +11,16 @@ export const ProductsProvider = ({children}) => {
     const [products, setProducts] = useState([])
 
 
+
+    function getShoppingCartProducts() {
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}/products/:id`)
+        .then(response => {
+            setProducts(response.data)
+        })
+        .catch(error => console.error("Error fetching products", error))
+    }
+
+
     function getProducts() {
         axios.get(`${process.env.REACT_APP_BACKEND_URL}/products`)
         .then(response => {
@@ -22,7 +32,8 @@ export const ProductsProvider = ({children}) => {
     return (
         <ProductContext.Provider value={{
             products,
-            getProducts
+            getProducts,
+            getShoppingCartProducts
         }}>
             {children}
         </ProductContext.Provider>
