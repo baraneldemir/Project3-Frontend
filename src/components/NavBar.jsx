@@ -6,12 +6,19 @@ import { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import SignUpFormModal from './SignUpFormModal/SignUpFormModal';
 import { Link } from "react-router-dom"
+import * as userService from '../utilities/users-service'
 
 
-export default function NavBar() {
+export default function NavBar({ user, setUser}) {
 
   const [showLoginFormModal, setShowLoginFormModal] = useState(false)
   const [showSignupFormModal, setShowSignupFormModal] = useState(false)
+
+  function handleLogOut() {
+    userService.logOut()
+
+    setUser(null)
+}
     
     return (
       <>
@@ -26,7 +33,7 @@ export default function NavBar() {
                 <Nav.Link as={Link} to="/contactus">Contact Us</Nav.Link>
                 </Nav>
             <Navbar.Collapse className="justify-content-end">
-            <Nav.Link as={Link} to="/yourcart">
+            <Nav.Link as={Link} to="/cart">
                         <img
                             src="https://www.shareicon.net/data/2016/02/07/281223_cart_512x512.png"
                             width="50"
@@ -45,16 +52,25 @@ export default function NavBar() {
                         />
             </Navbar.Brand>
               <Navbar.Text>
+                {user ?
+                <>
+                <h3>Welcome {user.name}</h3>
+                <Button variant="secondary" onClick={ handleLogOut }>Log out</Button>
+                </>
+                :
+                <>
                 <Button variant="secondary" onClick={() => setShowLoginFormModal(true)}>Log in</Button>
                 &nbsp;
                 &nbsp;
                 <Button variant="secondary" onClick={() => setShowSignupFormModal(true)}>Sign up</Button>
+                </>
+}
               </Navbar.Text>
             </Navbar.Collapse>
           </Container>
         </Navbar>
-        <LoginFormModal show={showLoginFormModal} handleClose={() => setShowLoginFormModal(false)} />
-        <SignUpFormModal show={showSignupFormModal} handleClose={() => setShowSignupFormModal(false)}/>
+        <LoginFormModal show={showLoginFormModal} handleClose={() => setShowLoginFormModal(false)} setUser={setUser}/>
+        <SignUpFormModal show={showSignupFormModal} handleClose={() => setShowSignupFormModal(false)} setUser={setUser}/>
         </>
       );
     }
