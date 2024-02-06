@@ -7,11 +7,8 @@ import AboutusPage from "./pages/AboutusPage/AboutusPage.jsx";
 import ContactusPage from "./pages/ContacusPage/ContactusPage.jsx";
 import { useState } from "react";
 import { getUser } from './utilities/users-service.js'
-<<<<<<< HEAD
 import SingleProductPage from "./pages/SingleProductPage/SingleProductPage.jsx";
-=======
 import ShoppingCartPage from "./pages/ShoppingCartPage/ShoppingCartPage.jsx";
->>>>>>> development
 
 
 

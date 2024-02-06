@@ -8,7 +8,9 @@ export default function ProductCard({id, name, image, price}) {
 
   return (
     <Card>
-      <Card.Img variant="top" src={image} />
+      <div style={{ height: "200px", overflow: "hidden"}}>
+        <Card.Img variant="top" src={image} style={{ objectFit: "contain", height: "100%" }}/>
+      </div>
       <Card.Body>
         <Card.Title>{name}</Card.Title>
         <Card.Text>{formattedPrice}</Card.Text>
