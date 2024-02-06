@@ -9,6 +9,7 @@ export function useProducts() {
 
 export const ProductsProvider = ({children}) => {
     const [products, setProducts] = useState([])
+    const [product, setProduct] = useState({})
 
 
     function getProducts() {
@@ -19,10 +20,21 @@ export const ProductsProvider = ({children}) => {
         .catch(error => console.error("Error fetching products", error))
     }
 
+    function getSingleProduct(productId) {
+        console.log(productId)
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}/products/${productId}`)
+        .then(response => { 
+            setProduct(response.data)
+        })
+        .catch(error => console.error("Error fetching single product", error))
+    }
+
     return (
         <ProductContext.Provider value={{
+            product,
             products,
-            getProducts
+            getProducts,
+            getSingleProduct
         }}>
             {children}
         </ProductContext.Provider>

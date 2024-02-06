@@ -7,6 +7,7 @@ import AboutusPage from "./pages/AboutusPage/AboutusPage.jsx";
 import ContactusPage from "./pages/ContacusPage/ContactusPage.jsx";
 import { useState } from "react";
 import { getUser } from './utilities/users-service.js'
+import SingleProductPage from "./pages/SingleProductPage/SingleProductPage.jsx";
 
 
 
@@ -19,6 +20,7 @@ function App() {
       <NavBar user={user} setUser={setUser} />
         <Routes>
             <Route path="/" element={ <HomePage />}/>
+            <Route path="/products/:id" element={ <SingleProductPage /> } />
             <Route path="/products" element={ <ProductsPage /> }/>
             <Route path="/aboutus" element={ <AboutusPage /> }/>
             <Route path="/contactus" element={ <ContactusPage /> }/>
