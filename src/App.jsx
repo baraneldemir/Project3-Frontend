@@ -1,6 +1,6 @@
 import PayPal from "./PayPal/PayPal";
 import { Routes, Route } from 'react-router-dom';
-import HomePage from "../src/pages/HomePage.jsx"
+import HomePage from "./pages/HomePage.jsx";
 import NavBar from "./components/NavBar.jsx";
 import ProductsPage from "./pages/ProductsPage/ProductsPage.jsx";
 import AboutusPage from "./pages/AboutusPage/AboutusPage.jsx";
