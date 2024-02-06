@@ -2,6 +2,7 @@ import ProductCard from "../../components/ProductCard/ProductCard";
 import { Container, Stack } from "react-bootstrap";
 import { useEffect } from "react";
 import { useProducts } from "../../contexts/ProductContext";
+import { Form, Button} from "react-bootstrap";
 
 export default function ProductsPage() {
 
@@ -13,6 +14,16 @@ export default function ProductsPage() {
   }, [])
 
   return (
+    <>
+    <Form className="d-flex">
+                  <Form.Control
+                    type="search"
+                    placeholder="Search"
+                    className="me-2"
+                    aria-label="Search"
+                  />
+                  <Button variant="outline-success">Search</Button>
+    </Form>
     <Container className='my-4'>
       <Stack direction="horizontal" gap="2" className="mb-4">
       <h1 className='me-auto'>Products</h1>
@@ -27,6 +38,7 @@ export default function ProductsPage() {
         return (
           <ProductCard 
           key={product._id}
+          id={product._id}
           name={product.name}
           image={product.image}
           price={product.price}
@@ -35,5 +47,6 @@ export default function ProductsPage() {
       })}</div>
 
     </Container>
+    </>
   )
 }
