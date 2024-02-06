@@ -1,3 +1,4 @@
+import PayPal from "../../PayPal/PayPal";
 import { useEffect } from "react";
 import { useProducts } from "../../contexts/ProductContext";
 import { useParams } from "react-router-dom";
@@ -13,6 +14,7 @@ export default function SingleProductPage() {
     }, [])
 
   return (
+    <>
     <div>
       {product && (
         <div>
@@ -21,5 +23,9 @@ export default function SingleProductPage() {
         </div>
       )}
     </div>
+    <div>
+        <PayPal/>    
+      </div>
+    </>
   )
 }
