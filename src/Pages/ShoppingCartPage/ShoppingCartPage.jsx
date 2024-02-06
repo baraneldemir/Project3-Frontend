@@ -3,12 +3,12 @@ import { useEffect } from "react";
 import { useProducts } from "../../contexts/ProductContext";
 import ShoppingCartProductModal from "../../components/ShoppingCartProductModal/ShoppingCartProductModal";
 
-export default function ShoppingCartPage({ user, setUser}) {
+export default function ShoppingCartPage({ user }) {
 
     const {products, getShoppingCartProducts} = useProducts()
 
     useEffect(() => {
-        getShoppingCartProducts()
+        getShoppingCartProducts(user)
         // eslint-disable-next-line react-hooks/exhaustive-deps
       }, [])
 

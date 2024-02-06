@@ -12,12 +12,12 @@ export const ProductsProvider = ({children}) => {
 
 
 
-    function getShoppingCartProducts() {
-        axios.get(`${process.env.REACT_APP_BACKEND_URL}/products/:id`)
+    function getShoppingCartProducts(user) {
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}/cart/${user._id}`)
         .then(response => {
             setProducts(response.data)
         })
-        .catch(error => console.error("Error fetching products", error))
+        .catch(error => console.error("Error fetching cart products", error))
     }
 
 
