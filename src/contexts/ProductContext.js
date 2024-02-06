@@ -10,15 +10,29 @@ export function useProducts() {
 export const ProductsProvider = ({children}) => {
     const [products, setProducts] = useState([])
     const [product, setProduct] = useState({})
+    const [cart, setCart] = useState([])
 
 
 
-    function getShoppingCartProducts(user) {
-        axios.get(`${process.env.REACT_APP_BACKEND_URL}/cart/${user._id}`)
+    function getShoppingCartProducts(userId) {
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}/cart?userId=${userId}`)
         .then(response => {
-            setProducts(response.data)
+            setCart(response.data)
         })
         .catch(error => console.error("Error fetching cart products", error))
+    }
+
+    function addToCart(productId, quantity, userId) {
+        axios.post(`${process.env.REACT_APP_BACKEND_URL}/cart/add`, {
+            productId: productId,
+            quanity: quantity,
+            userId: userId
+        })
+        .then(response => {
+            console.log("Product add to cart", response.data)
+            setCart(response.data)
+        })
+        .catch(error => console.error("Error adding product to cart", error))
     }
 
 
@@ -43,9 +57,11 @@ export const ProductsProvider = ({children}) => {
         <ProductContext.Provider value={{
             product,
             products,
+            cart,
             getProducts,
             getSingleProduct,
-            getShoppingCartProducts
+            getShoppingCartProducts,
+            addToCart
         }}>
             {children}
         </ProductContext.Provider>

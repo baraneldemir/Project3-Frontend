@@ -5,7 +5,7 @@ import LoginFormModal from './LoginFormModal/LoginFormModal'
 import { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import SignUpFormModal from './SignUpFormModal/SignUpFormModal';
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import * as userService from '../utilities/users-service'
 
 
@@ -13,10 +13,11 @@ export default function NavBar({ user, setUser}) {
 
   const [showLoginFormModal, setShowLoginFormModal] = useState(false)
   const [showSignupFormModal, setShowSignupFormModal] = useState(false)
+  const navigate = useNavigate()
 
   function handleLogOut() {
     userService.logOut()
-
+    navigate('/')
     setUser(null)
 }
     
@@ -33,30 +34,38 @@ export default function NavBar({ user, setUser}) {
                 <Nav.Link as={Link} to="/contactus">Contact Us</Nav.Link>
                 </Nav>
             <Navbar.Collapse className="justify-content-end">
-            <Nav.Link as={Link} to="/cart">
-                        <img
-                            src="https://www.shareicon.net/data/2016/02/07/281223_cart_512x512.png"
-                            width="50"
-                            height="50"
-                            className="d-inline-block align-top"
-                            alt="Shopping cart logo"
-                        />
-            </Nav.Link>
-            <Navbar.Brand as={Link} to="/likeditems">
-                        <img
-                            src="https://i.imgur.com/EALzAZ0.png"
-                            width="50"
-                            height="50"
-                            className="d-inline-block align-top"
-                            alt="Shopping cart logo"
-                        />
-            </Navbar.Brand>
+              { user ?
+              <>
+                <Nav.Link as={Link} to="/cart">
+                            <img
+                                src="https://www.shareicon.net/data/2016/02/07/281223_cart_512x512.png"
+                                width="50"
+                                height="50"
+                                className="d-inline-block align-top"
+                                alt="Shopping cart logo"
+                            />
+                </Nav.Link>
+                <Navbar.Brand as={Link} to="/likeditems">
+                            <img
+                                src="https://i.imgur.com/EALzAZ0.png"
+                                width="50"
+                                height="50"
+                                className="d-inline-block align-top"
+                                alt="Shopping cart logo"
+                            />
+                </Navbar.Brand>
+              </>
+              :
+              <></>
+              }
               <Navbar.Text>
                 {user ?
-                <>
+                <div className='d-flex'>
                 <h3>Welcome {user.name}</h3>
+                &nbsp;
+                &nbsp;
                 <Button variant="secondary" onClick={ handleLogOut }>Log out</Button>
-                </>
+                </div>
                 :
                 <>
                 <Button variant="secondary" onClick={() => setShowLoginFormModal(true)}>Log in</Button>
@@ -64,7 +73,7 @@ export default function NavBar({ user, setUser}) {
                 &nbsp;
                 <Button variant="secondary" onClick={() => setShowSignupFormModal(true)}>Sign up</Button>
                 </>
-}
+              }
               </Navbar.Text>
             </Navbar.Collapse>
           </Container>

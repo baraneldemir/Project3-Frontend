@@ -9,7 +9,7 @@ export default function ShoppingCartPage({ user }) {
     const {products, getShoppingCartProducts} = useProducts()
 
     useEffect(() => {
-        getShoppingCartProducts(user)
+        getShoppingCartProducts(user._id)
         // eslint-disable-next-line react-hooks/exhaustive-deps
       }, [])
 

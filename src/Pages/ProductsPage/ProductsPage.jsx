@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useProducts } from "../../contexts/ProductContext";
 import { Form, Button} from "react-bootstrap";
 
-export default function ProductsPage() {
+export default function ProductsPage({user, setUser}) {
 
   const {products, getProducts} = useProducts()
 
@@ -42,6 +42,7 @@ export default function ProductsPage() {
           name={product.name}
           image={product.image}
           price={product.price}
+          user={user}
           />
         )
       })}</div>
