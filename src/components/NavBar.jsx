@@ -33,7 +33,7 @@ export default function NavBar({ user, setUser}) {
                 <Nav.Link as={Link} to="/contactus">Contact Us</Nav.Link>
                 </Nav>
             <Navbar.Collapse className="justify-content-end">
-            <Nav.Link as={Link} to="/yourcart">
+            <Nav.Link as={Link} to="/cart">
                         <img
                             src="https://www.shareicon.net/data/2016/02/07/281223_cart_512x512.png"
                             width="50"
