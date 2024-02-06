@@ -1,15 +1,21 @@
 import PayPal from "../../PayPal/PayPal";
 import { Container, Stack } from "react-bootstrap";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useProducts } from "../../contexts/ProductContext";
 import ShoppingCartProductModal from "../../components/ShoppingCartProductModal/ShoppingCartProductModal";
 
 export default function ShoppingCartPage({ user }) {
 
-    const {products, getShoppingCartProducts} = useProducts()
+  const [shoppingCart, setShoppingCart] = useState() //ADDED
+
+  const {cart, getShoppingCartProducts} = useProducts()
+
 
     useEffect(() => {
-        getShoppingCartProducts(user._id)
+      getShoppingCartProducts(user._id)
+      setShoppingCart(true)
+      console.log(shoppingCart)
+      
         // eslint-disable-next-line react-hooks/exhaustive-deps
       }, [])
 
@@ -25,13 +31,13 @@ export default function ShoppingCartPage({ user }) {
               gap: "1rem",
               alignItems: "flex-start"
               }}
-      >{products.map( product => {
+      >{cart && shoppingCart && cart?.products.map( product => {
         return (
           <ShoppingCartProductModal
-          key={product._id}
-          name={product.name}
-          image={product.image}
-          price={product.price}
+          key={product.productId._id}
+          name={product.productId.name}
+          image={product.productId.image}
+          price={product.productId.price}
           />
         )
       })}</div>

@@ -10,14 +10,16 @@ export function useProducts() {
 export const ProductsProvider = ({children}) => {
     const [products, setProducts] = useState([])
     const [product, setProduct] = useState({})
-    const [cart, setCart] = useState([])
+    const [cart, setCart] = useState()
 
 
 
     function getShoppingCartProducts(userId) {
         axios.get(`${process.env.REACT_APP_BACKEND_URL}/cart?userId=${userId}`)
         .then(response => {
+            console.log(response.data)
             setCart(response.data)
+           
         })
         .catch(error => console.error("Error fetching cart products", error))
     }
@@ -25,12 +27,13 @@ export const ProductsProvider = ({children}) => {
     function addToCart(productId, quantity, userId) {
         axios.post(`${process.env.REACT_APP_BACKEND_URL}/cart/add`, {
             productId: productId,
-            quanity: quantity,
+            quantity: quantity,
             userId: userId
         })
         .then(response => {
             console.log("Product add to cart", response.data)
             setCart(response.data)
+             
         })
         .catch(error => console.error("Error adding product to cart", error))
     }
