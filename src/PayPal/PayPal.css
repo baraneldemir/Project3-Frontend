@@ -1,6 +1,9 @@
-.PayPal {
+.payPal {
     display: flex;
     align-items: center;
     justify-content: center;
     margin-top: 20px;
+    scale: 0.7;
+ 
+    
 }

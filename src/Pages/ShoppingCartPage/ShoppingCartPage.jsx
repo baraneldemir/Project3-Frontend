@@ -1,3 +1,4 @@
+import PayPal from "../../PayPal/PayPal";
 import { Container, Stack } from "react-bootstrap";
 import { useEffect } from "react";
 import { useProducts } from "../../contexts/ProductContext";
@@ -13,6 +14,7 @@ export default function ShoppingCartPage({ user }) {
       }, [])
 
   return (
+    <>
     <Container className='my-4'>
       <Stack direction="vertical" gap="2" className="mb-4">
       <h1 className='me-auto'>Shopping Cart of {user.name}</h1>
@@ -35,5 +37,7 @@ export default function ShoppingCartPage({ user }) {
       })}</div>
 
     </Container>
+    <PayPal />
+    </>
   )
 }
