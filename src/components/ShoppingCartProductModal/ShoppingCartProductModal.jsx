@@ -14,3 +14,13 @@ export default function ShoppinCartProductModal({name, image, price}) {
     </Card>
   )
 }
+
+
+
+
+
+
+
+
+
+
