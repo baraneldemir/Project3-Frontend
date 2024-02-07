@@ -1,16 +1,9 @@
 import { Card, Button } from "react-bootstrap"
-import { currencyFormatter } from "../../utilities/currencyFormatter"
-import { useProducts } from '../../contexts/ProductContext'
+import { useProducts } from "../../contexts/ProductContext";
 
-export default function ShoppinCartProductModal({id, name, image, price, user}) {
-
-  const formattedPrice = currencyFormatter.format(price)
-  const { deleteFromCart } = useProducts()
-
-  function handleDeleteFromCart() {
-    deleteFromCart(id, user._id)
-  }
-
+export default function ShoppinCartProductModal({name, image, price, productId, userId}) {
+  const {  deleteProduct} = useProducts();
+  
 
   return (
     <Card>
@@ -22,7 +15,7 @@ export default function ShoppinCartProductModal({id, name, image, price, user}) 
         <Card.Text>{formattedPrice}</Card.Text>
       </Card.Body>
       <Card.Footer >
-        <Button variant="danger" onClick={handleDeleteFromCart}>Delete</Button>
+      <Button variant="outline-danger" onClick={() => deleteProduct(productId, userId)}>Delete</Button>
       </Card.Footer>
     </Card>
   )

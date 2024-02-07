@@ -11,7 +11,7 @@ export const ProductsProvider = ({children}) => {
     const [products, setProducts] = useState([])
     const [product, setProduct] = useState({})
     const [cart, setCart] = useState()
-    const [result, setResult] = useState([])
+    const [isUpdated , setIsUpdated] = useState(false)
 
 
     function searchBar(search) {
@@ -29,12 +29,13 @@ export const ProductsProvider = ({children}) => {
         axios.get(`${process.env.REACT_APP_BACKEND_URL}/cart?userId=${userId}`)
         .then(response => {
             console.log(response.data)
-            setCart(response.data)  
+            setCart(response.data)   
         })
         .catch(error => console.error("Error fetching cart products", error))
     }
     
     function addToCart(productId, quantity, userId) {
+        console.log(productId)
         axios.post(`${process.env.REACT_APP_BACKEND_URL}/cart/add`, {
             productId: productId,
             quantity: quantity,
@@ -66,17 +67,19 @@ export const ProductsProvider = ({children}) => {
         .catch(error => console.error("Error fetching single product", error))
     }
 
-    function deleteFromCart(productId, userId) {
-        
-        axios.delete(`${process.env.REACT_APP_BACKEND_URL}/cart?userId=${userId}/products?productId=${productId}`)
-        .then(response => {
-            console.log(response.data)
-            setCart(response.data)
-            console.log("product deleted")
-           
-        })
-        .catch(error => console.error("Error fetching cart products", error))
-    }
+    function deleteProduct(productId, userId) {
+        console.log(productId)
+        axios
+          .delete(`${process.env.REACT_APP_BACKEND_URL}/cart/remove/${productId}?userId=${userId}`)
+          .then(() => {
+            // setProducts(products.filter((product) => product._id !== productId));
+            setCart()
+            setIsUpdated(true)
+            // getProducts();
+            
+          })
+          .catch((error) => console.error("Error deleting product:", error));
+      }
 
     return (
         <ProductContext.Provider value={{
@@ -88,9 +91,9 @@ export const ProductsProvider = ({children}) => {
             getShoppingCartProducts,
             addToCart,
             searchBar,
-            result,
-            deleteFromCart
-
+            deleteProduct,
+            isUpdated,
+            setIsUpdated
         }}>
             {children}
         </ProductContext.Provider>
