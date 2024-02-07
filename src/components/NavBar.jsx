@@ -53,15 +53,8 @@ export default function NavBar({ user, setUser}) {
                                 alt="Shopping cart logo"
                             />
                 </Nav.Link>
-                <Navbar.Brand as={Link} to="/likeditems">
-                            <img
-                                src="https://i.imgur.com/EALzAZ0.png"
-                                width="50"
-                                height="50"
-                                className="d-inline-block align-top"
-                                alt="Shopping cart logo"
-                            />
-                </Navbar.Brand>
+                &nbsp;
+                &nbsp;
               </>
               :
               <></>
