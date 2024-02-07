@@ -19,7 +19,6 @@ export const ProductsProvider = ({children}) => {
         .then(response => {
             console.log(response.data)
             setCart(response.data)
-           
         })
         .catch(error => console.error("Error fetching cart products", error))
     }
@@ -56,6 +55,18 @@ export const ProductsProvider = ({children}) => {
         .catch(error => console.error("Error fetching single product", error))
     }
 
+    function updateCart(productId, quantity, userId) {
+        console.log(productId, userId)
+        axios.put(`${process.env.REACT_APP_BACKEND_URL}/cart/update/${productId}?userId=${userId}`, {quantity})
+        .then(response => {
+            console.log('Cart Updated', response.data)
+            setCart(response.data)
+        })
+        .catch(error => {
+            console.error('Error updating cart:', error)
+        })
+    }
+
     return (
         <ProductContext.Provider value={{
             product,
@@ -64,7 +75,8 @@ export const ProductsProvider = ({children}) => {
             getProducts,
             getSingleProduct,
             getShoppingCartProducts,
-            addToCart
+            addToCart,
+            updateCart
         }}>
             {children}
         </ProductContext.Provider>
