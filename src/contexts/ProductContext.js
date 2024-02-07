@@ -25,7 +25,7 @@ export const ProductsProvider = ({children}) => {
     function addToCart(productId, quantity, userId) {
         axios.post(`${process.env.REACT_APP_BACKEND_URL}/cart/add`, {
             productId: productId,
-            quanity: quantity,
+            quantity: quantity,
             userId: userId
         })
         .then(response => {
