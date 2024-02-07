@@ -12,7 +12,7 @@ export const ProductsProvider = ({children}) => {
     const [product, setProduct] = useState({})
     const [cart, setCart] = useState()
     const [isUpdated, setIsUpdated] = useState()
-    const [result, setResult] = useState([])
+    const [result, setResult] = useState(false)
 
 
     function searchBar(search) {
@@ -105,6 +105,7 @@ export const ProductsProvider = ({children}) => {
             addToCart,
             searchBar,
             result,
+            setResult,
             updateCart,
             deleteProduct,
             isUpdated,
