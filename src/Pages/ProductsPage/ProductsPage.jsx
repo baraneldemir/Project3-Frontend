@@ -1,26 +1,22 @@
 import ProductCard from "../../components/ProductCard/ProductCard";
-import { Container, Stack } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import { useEffect } from "react";
 import { useProducts } from "../../contexts/ProductContext";
 import { Form, Button} from "react-bootstrap";
 import { useState } from "react";
+import { Navbar, Nav, NavDropdown  } from "react-bootstrap";
 
 export default function ProductsPage({user, setUser}) {
 
+  
+
   const [search, setSearch] = useState("");
-  const { products, getProducts, searchBar, result } = useProducts();
+  const { products, getProducts, searchBar, result} = useProducts();
 
   const handleSearchChange = (e) => {
     setSearch(e.target.value)
-    
-  }
-  const handleSearchSubmit = (e) => {
-    e.preventDefault();
-    
     searchBar(search);
-  };
-
-
+  }
 
   useEffect(() => {
     getProducts()
@@ -29,26 +25,47 @@ export default function ProductsPage({user, setUser}) {
 
   return (
     <>
-    <Form className="d-flex" onSubmit={handleSearchSubmit}>
-        <Form.Control
-          style={{ width: "5" }}
-          type="search"
-          placeholder="Search"
-          className="me-2"
-          aria-label="Search"
-          value={search}
-          onChange={handleSearchChange}
-        />
-        <Button variant="outline-success" type="submit">
-          Search
-        </Button>
-      </Form>
+    <Navbar className="bg-body-tertiary"  data-bs-theme="dark">
+      <Container >
+        <Navbar.Brand >Categories</Navbar.Brand>
+        
+        <Nav
+            className="me-auto my-2 my-lg-0"
+            style={{ maxHeight: '100px' }}
+            navbarScroll
+          >
+            <NavDropdown title="List of Products" id="navbarScrollingDropdown">
+              <NavDropdown.Item >Telescopes </NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item >Clothes</NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item >Educational</NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item >Toys</NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item >Consumables</NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item >Moon Rocks</NavDropdown.Item>
+              
+            </NavDropdown>
+          </Nav>
+          <Form className="d-flex">
+            <Form.Control
+              onChange={handleSearchChange}
+              value={search}
+              type="search"
+              placeholder="Search"
+              className="me-2"
+              aria-label="Search"
+            />
+            <Button variant="outline-success">Search</Button>
+          </Form>
+       
+      </Container>
+    </Navbar>
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundImage: `url("https://stsci-opo.org/STScI-01GA6KNV1S3TP2JBPCDT8G826T.png")`, backgroundSize: 'cover', minHeight: '100vh'}}>
       
       <Container className="my-4">
-        <Stack direction="horizontal" gap="2" className="mb-4">
-          <h1 className="me-auto" style={{color: "white"}}>Products</h1>
-        </Stack>
         <div
           style={{
             display: "grid",
@@ -57,7 +74,7 @@ export default function ProductsPage({user, setUser}) {
             alignItems: "flex-start",
           }}
         >
-          {result.length > 0 ? 
+          { result ? 
           
             result.map((product) => (
                 <ProductCard

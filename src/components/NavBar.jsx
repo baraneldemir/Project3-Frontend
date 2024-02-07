@@ -7,13 +7,21 @@ import { Button } from 'react-bootstrap';
 import SignUpFormModal from './SignUpFormModal/SignUpFormModal';
 import { Link, useNavigate } from "react-router-dom"
 import * as userService from '../utilities/users-service'
-
+import { useProducts } from '../contexts/ProductContext';
 
 export default function NavBar({ user, setUser}) {
 
   const [showLoginFormModal, setShowLoginFormModal] = useState(false)
   const [showSignupFormModal, setShowSignupFormModal] = useState(false)
   const navigate = useNavigate()
+
+  const { setResult } = useProducts()
+  
+  function handleClick() {
+    setResult(false)
+
+  }
+
 
   function handleLogOut() {
     userService.logOut()
@@ -29,7 +37,7 @@ export default function NavBar({ user, setUser}) {
             <Navbar.Toggle />
                 <Nav>
                 <Nav.Link as={Link} to="/">Home</Nav.Link>
-                <Nav.Link as={Link} to="/products">Products</Nav.Link>
+                <Nav.Link as={Link} onClick={handleClick} to="/products">Products</Nav.Link>
                 <Nav.Link as={Link} to="/aboutus">About Us</Nav.Link>
                 <Nav.Link as={Link} to="/contactus">Contact Us</Nav.Link>
                 </Nav>
