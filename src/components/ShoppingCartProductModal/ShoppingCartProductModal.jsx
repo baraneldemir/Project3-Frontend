@@ -2,7 +2,7 @@ import { Card, Button } from "react-bootstrap"
 import { useProducts } from '../../contexts/ProductContext'
 
 export default function ShoppinCartProductModal({name, image, price, quantity, productId, userId, setShoppingCart}) {
-  const { updateCart, getShoppingCartProducts } = useProducts()
+  const { updateCart, getShoppingCartProducts, deleteProduct } = useProducts()
 
   const handleAdd = () => {
     updateCart(productId, quantity + 1, userId)
@@ -29,6 +29,7 @@ export default function ShoppinCartProductModal({name, image, price, quantity, p
         <Card.Text>Amount: {quantity}</Card.Text>
         <Button variant="outline-secondary" onClick={handleSubtract}>-</Button>
         <Button variant="outline-secondary" onClick={handleAdd}>+</Button>
+      <Button variant="outline-danger" onClick={() => deleteProduct(productId, userId)}>Delete</Button>
       </Card.Footer>
     </Card>
   )

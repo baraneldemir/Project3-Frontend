@@ -11,6 +11,7 @@ export const ProductsProvider = ({children}) => {
     const [products, setProducts] = useState([])
     const [product, setProduct] = useState({})
     const [cart, setCart] = useState()
+    const [isUpdated , setIsUpdated] = useState(false)
 
 
 
@@ -24,6 +25,7 @@ export const ProductsProvider = ({children}) => {
     }
 
     function addToCart(productId, quantity, userId) {
+        console.log(productId)
         axios.post(`${process.env.REACT_APP_BACKEND_URL}/cart/add`, {
             productId: productId,
             quantity: quantity,
@@ -66,6 +68,19 @@ export const ProductsProvider = ({children}) => {
             console.error('Error updating cart:', error)
         })
     }
+    function deleteProduct(productId, userId) {
+        console.log(productId)
+        axios
+          .delete(`${process.env.REACT_APP_BACKEND_URL}/cart/remove/${productId}?userId=${userId}`)
+          .then(() => {
+            // setProducts(products.filter((product) => product._id !== productId));
+            setCart()
+            setIsUpdated(true)
+            // getProducts();
+            
+          })
+          .catch((error) => console.error("Error deleting product:", error));
+      }
 
     return (
         <ProductContext.Provider value={{
@@ -76,7 +91,10 @@ export const ProductsProvider = ({children}) => {
             getSingleProduct,
             getShoppingCartProducts,
             addToCart,
-            updateCart
+            updateCart,
+            deleteProduct,
+            isUpdated,
+            setIsUpdated
         }}>
             {children}
         </ProductContext.Provider>
