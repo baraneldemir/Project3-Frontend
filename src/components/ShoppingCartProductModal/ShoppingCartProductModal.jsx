@@ -1,7 +1,9 @@
 import { Card, Button } from "react-bootstrap"
 import { useProducts } from "../../contexts/ProductContext";
+import { currencyFormatter } from "../../utilities/currencyFormatter";
 
 export default function ShoppinCartProductModal({name, image, price, productId, userId}) {
+  const formattedPrice = currencyFormatter.format(price)
   const {  deleteProduct} = useProducts();
   
 
