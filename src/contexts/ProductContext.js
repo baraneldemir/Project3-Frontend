@@ -11,19 +11,29 @@ export const ProductsProvider = ({children}) => {
     const [products, setProducts] = useState([])
     const [product, setProduct] = useState({})
     const [cart, setCart] = useState()
+    const [result, setResult] = useState([])
 
 
+    function searchBar(search) {
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}/products/search?query=${search}`)
+        .then(response => {
+            setResult(response.data)
+            console.log(response.data)
+        })
+        .catch(error => {
+            console.error("error searching products", error)
+        })
+    }
 
     function getShoppingCartProducts(userId) {
         axios.get(`${process.env.REACT_APP_BACKEND_URL}/cart?userId=${userId}`)
         .then(response => {
             console.log(response.data)
-            setCart(response.data)
-           
+            setCart(response.data)  
         })
         .catch(error => console.error("Error fetching cart products", error))
     }
-
+    
     function addToCart(productId, quantity, userId) {
         axios.post(`${process.env.REACT_APP_BACKEND_URL}/cart/add`, {
             productId: productId,
@@ -56,6 +66,18 @@ export const ProductsProvider = ({children}) => {
         .catch(error => console.error("Error fetching single product", error))
     }
 
+    function deleteFromCart(productId, userId) {
+        
+        axios.delete(`${process.env.REACT_APP_BACKEND_URL}/cart?userId=${userId}/products?productId=${productId}`)
+        .then(response => {
+            console.log(response.data)
+            setCart(response.data)
+            console.log("product deleted")
+           
+        })
+        .catch(error => console.error("Error fetching cart products", error))
+    }
+
     return (
         <ProductContext.Provider value={{
             product,
@@ -64,7 +86,11 @@ export const ProductsProvider = ({children}) => {
             getProducts,
             getSingleProduct,
             getShoppingCartProducts,
-            addToCart
+            addToCart,
+            searchBar,
+            result,
+            deleteFromCart
+
         }}>
             {children}
         </ProductContext.Provider>

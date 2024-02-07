@@ -37,6 +37,8 @@ export default function ShoppingCartPage({ user }) {
                   name={product.productId.name}
                   image={product.productId.image}
                   price={product.productId.price}
+                  productId={product.productId._id}
+                  userId={cart.userId}
                 />
               ))}
             </div>
