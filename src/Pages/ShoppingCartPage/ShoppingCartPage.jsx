@@ -9,15 +9,17 @@ export default function ShoppingCartPage({ user }) {
   const [shoppingCart, setShoppingCart] = useState() //ADDED
 
   const {cart, getShoppingCartProducts} = useProducts()
+  const {isUpdated, setIsUpdated} = useProducts()
 
 
     useEffect(() => {
       getShoppingCartProducts(user._id)
       setShoppingCart(true)
+      setIsUpdated(false)
       console.log(shoppingCart)
       
         // eslint-disable-next-line react-hooks/exhaustive-deps
-      }, [])
+      }, [isUpdated])
 
       return (
         <>
@@ -37,6 +39,9 @@ export default function ShoppingCartPage({ user }) {
                   name={product.productId.name}
                   image={product.productId.image}
                   price={product.productId.price}
+                  productId={product.productId._id}
+                  quantity={product.quantity}
+                  userId = {cart.userId}
                 />
               ))}
             </div>
