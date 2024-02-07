@@ -63,6 +63,7 @@ export const ProductsProvider = ({children}) => {
         .then(response => {
             console.log('Cart Updated', response.data)
             setCart(response.data)
+            setIsUpdated(true)
         })
         .catch(error => {
             console.error('Error updating cart:', error)
