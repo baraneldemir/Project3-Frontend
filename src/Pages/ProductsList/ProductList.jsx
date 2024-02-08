@@ -7,6 +7,7 @@ import "../HomePage.css"
 export default function ProductsPage({user}) {
   const { products, getProducts} = useProducts();
   const [randomProducts, setRandomProducts] = useState([]);
+  const [productCount, setProductCount] = useState(calculateProductCount());
 
 
 
@@ -16,18 +17,41 @@ export default function ProductsPage({user}) {
   }, [])
 
   useEffect(() => {
-    setRandomProducts(getRandomProducts(products, 4));
+    setRandomProducts(getRandomProducts(products, productCount));
     const intervalId = setInterval(() => {
-      setRandomProducts(getRandomProducts(products, 4));
+      setRandomProducts(getRandomProducts(products, productCount));
     }, 5000);
 
     return () => clearInterval(intervalId);
-  }, [products]);
+  }, [products, productCount]);
 
   function getRandomProducts(products, count) {
     const shuffledProducts = products.sort(() => 0.5 - Math.random());
     return shuffledProducts.slice(0, count);
   }
+
+  function calculateProductCount() {
+    if (window.innerWidth < 770) {
+      return 1;
+    } else if (window.innerWidth < 990) {
+      return 2; 
+    } else if (window.innerWidth < 1400) {
+      return 3; 
+    } else { return 4 }
+  }
+
+  useEffect(() => {
+    function handleResize() {
+      const count = calculateProductCount()
+      setProductCount(count)
+      setRandomProducts(getRandomProducts(products, count));
+    }
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [products]);
 
 
   return (
