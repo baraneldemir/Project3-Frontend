@@ -7,7 +7,7 @@ import "./HomePage.css"
 export default function HomePage() {
   return (
     <div className="home-page">
-      <div className="slide-container">
+      <div className="slide-container" >
         <Slide />
       </div>
       <div className="product-container">
