@@ -81,13 +81,14 @@ export const ProductsProvider = ({children}) => {
         })
     }
 
-    function updateProductStock(productId, stock) {
+    function updateProductStock(productId, stock, setStock) {
         axios.put(`${process.env.REACT_APP_BACKEND_URL}/products/${productId}`, {
             stock: stock
         })
             .then(response => {
                 console.log('Product stock updated:', response.data);
-                // No need to set any state here, assume stock is updated on backend only
+                setStock(stock)
+                setIsUpdated(true)
             })
             .catch(error => console.error('Error updating product stock:', error));
     }

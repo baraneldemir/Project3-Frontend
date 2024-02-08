@@ -2,15 +2,21 @@ import { Card, Button } from "react-bootstrap"
 import { Link } from "react-router-dom"
 import { currencyFormatter } from "../../utilities/currencyFormatter"
 import { useProducts } from '../../contexts/ProductContext'
+import { useState } from 'react'
 
 export default function ProductCard({id, name, image, price, user, stock}) {
   const formattedPrice = currencyFormatter.format(price)
   const { addToCart, updateProductStock } = useProducts()
+  const [localStock, setLocalStock] = useState(stock)
 
   const handleAddToCart = () => {
-    addToCart(id, 1, user._id)
-    const updatedStock = stock - 1
-    updateProductStock(id, updatedStock)
+    if (localStock > 0) {
+      addToCart(id, 1, user._id)
+      const updatedStock = localStock - 1
+      updateProductStock(id, updatedStock, setLocalStock)
+    } else {
+      alert('No More Stock')
+    }
   }
 
 
