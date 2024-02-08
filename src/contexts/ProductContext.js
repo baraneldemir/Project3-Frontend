@@ -69,6 +69,7 @@ export const ProductsProvider = ({children}) => {
     }
 
     function updateCart(productId, quantity, userId) {
+        setCart(false)
         console.log(productId, userId)
         axios.put(`${process.env.REACT_APP_BACKEND_URL}/cart/update/${productId}?userId=${userId}`, {quantity})
         .then(response => {
