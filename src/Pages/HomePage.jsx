@@ -1,14 +1,3 @@
-
-// import Slide from "../components/Slide/Slide"
-
-// export default function HomePage() {
-//   return (
-//     <>    
-//         <Slide />
-//     </>
-//   )
-// }
-
 import Slide from "../components/Slide/Slide"
 import "./HomePage.css"
 import ProductsList from "../pages/ProductsList/ProductList"
