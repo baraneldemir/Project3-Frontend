@@ -7,7 +7,7 @@ export default function AboutusPage() {
     <div class="txt" id="txt">
         <b>A</b><b>B</b><b>O</b><b>U</b><b>T</b><b>U</b><b>S</b><b>&nbsp;</b><b>P</b><b>A</b><b>G</b><b>E</b>
       </div>
-    <h1 style={{color: "white"}}>AboutusPage</h1>
+    
     </div>
     </>
   )
