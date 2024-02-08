@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import { currencyFormatter } from "../../utilities/currencyFormatter"
 import { useProducts } from '../../contexts/ProductContext'
 
-export default function ProductCard({id, name, image, price, user}) {
+export default function ProductCard({id, name, image, price, user, handleAlertChange}) {
   const formattedPrice = currencyFormatter.format(price)
   const { addToCart } = useProducts()
 
@@ -24,7 +24,10 @@ export default function ProductCard({id, name, image, price, user}) {
       <Card.Footer >
         {user ?
         <>
-        <Button variant="secondary" onClick={handleAddToCart}>Add To Shopping Cart</Button>
+        <Button variant="secondary" onClick={() => {
+          handleAlertChange()
+          handleAddToCart()
+          }}>Add To Shopping Cart</Button>
         &nbsp;
         &nbsp;
        <Link to={`/products/${id}`} ><Button variant="secondary">Info</Button></Link>
