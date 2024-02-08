@@ -29,7 +29,7 @@ export default function ShoppingCartPage({ user }) {
       }); 
 
       return (
-        <div style={{backgroundImage: `url("https://d2r55xnwy6nx47.cloudfront.net/uploads/2020/09/Cosmic_Shear_1200_Social.jpg")`, backgroundSize: 'cover', minHeight: '100vh'}}>
+        <div style={{backgroundImage: `url("https://d2r55xnwy6nx47.cloudfront.net/uploads/2020/09/Cosmic_Shear_1200_Social.jpg")`, backgroundAttachment: 'fixed', backgroundSize: 'cover', minHeight: '100vh'}}>
           <Container>
             <Stack direction="vertical" gap="2" className="mb-4">
               <h1 className='me-auto pt-3' style={{color: 'white'}}>Shopping Cart of {user.name}</h1>
