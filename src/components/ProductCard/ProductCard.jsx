@@ -4,6 +4,7 @@ import { currencyFormatter } from "../../utilities/currencyFormatter"
 import { useProducts } from '../../contexts/ProductContext'
 import { useState, useEffect } from 'react'
 
+
 export default function ProductCard({id, name, image, price, user, stock, handleAlertAddedChange, handleAlertStockChange}) {
   const formattedPrice = currencyFormatter.format(price)
   const { product, addToCart, updateProductStock, isUpdated, setIsUpdated, getSingleProduct } = useProducts()
@@ -38,27 +39,27 @@ export default function ProductCard({id, name, image, price, user, stock, handle
 
 
   return (
-    <Card>
-      <div style={{ height: "200px", overflow: "hidden"}}>
-        <Card.Img variant="top" src={image} style={{ objectFit: "contain", height: "100%" }}/>
+    <Card style={{ border: "2px solid #001F3F", borderRadius: "10px", boxShadow: "0 4px 8px 0 rgba(0,0,0,0.2)", transition: "0.3s"}}>
+      <div style={{ height: "22vh", overflow: "hidden"}}>
+        <Card.Img variant="top" src={image} style={{ objectFit: "contain", height: "100%", background: 'url(https://wallpapers.com/images/featured/cosmic-background-tr6ptidf81on0l2b.webp)'}}/>
       </div>
-      <Card.Body>
-        <Card.Title>{name}</Card.Title>
+      <Card.Body style={{ backgroundColor: "#001F3F", color: "#FFFFFF" }}>
+        <Card.Title style={{ fontFamily: "Arial, sans-serif" }}>{name}</Card.Title>
         <Card.Text>{formattedPrice}</Card.Text>
       </Card.Body>
-      <Card.Footer >
+      <Card.Footer style={{ backgroundColor: "#001F3F", borderTop: "1px solid #E6E6E6" }}>
         {user ?
         <>
-        {stock > 0 ? <Button variant="secondary" onClick={() => {
+        {stock > 0 ? <Button variant="outline-light" onClick={() => {
           handleAddToCart()
           handleAlertAddedChange()
-          }}>Add To Shopping Cart</Button> : <Button variant="danger" onClick={handleAlertStockChange}>Out of Stock</Button>}
+          }}>Add To Shopping Cart</Button> : <Button variant="outline-danger" onClick={handleAlertStockChange}>Out of Stock</Button>}
         &nbsp;
         &nbsp;
-       <Link to={`/products/${id}`} ><Button variant="secondary">Info</Button></Link>
+       <Link to={`/products/${id}`} style={{ textDecoration: 'none' }}><Button variant="outline-light">Info</Button></Link>
        </>
         :
-        <Link to={`/products/${id}`} ><Button variant="secondary">Info</Button></Link>     
+        <Link to={`/products/${id}`} style={{ textDecoration: 'none' }}><Button variant="outline-light">Info</Button></Link>     
       }
       </Card.Footer>
     </Card>

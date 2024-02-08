@@ -4,9 +4,11 @@ import { useProducts } from "../../contexts/ProductContext";
 import ShoppingCartProductModal from "../../components/ShoppingCartProductModal/ShoppingCartProductModal";
 import TotalPaymentModal from "../../components/TotalPaymentModal/TotalPaymentModal";
 
+
 export default function ShoppingCartPage({ user }) {
 
   const [shoppingCart, setShoppingCart] = useState() //ADDED
+
 
   const {cart, getShoppingCartProducts} = useProducts()
   const {isUpdated, setIsUpdated} = useProducts()
@@ -29,7 +31,7 @@ export default function ShoppingCartPage({ user }) {
       }); 
 
       return (
-        <div style={{backgroundImage: `url("https://d2r55xnwy6nx47.cloudfront.net/uploads/2020/09/Cosmic_Shear_1200_Social.jpg")`, backgroundSize: 'cover', minHeight: '100vh'}}>
+        <div style={{backgroundAttachment: "fixed", backgroundImage: `url("https://d2r55xnwy6nx47.cloudfront.net/uploads/2020/09/Cosmic_Shear_1200_Social.jpg")`, backgroundSize: 'cover', minHeight: '100vh'}}>
           <Container>
             <Stack direction="vertical" gap="2" className="mb-4">
               <h1 className='me-auto pt-3' style={{color: 'white'}}>Shopping Cart of {user.name}</h1>
@@ -55,11 +57,12 @@ export default function ShoppingCartPage({ user }) {
             </div>
             &nbsp;
             &nbsp;
+            <div style={{ position: 'fixed', top: '8.5%', right: 0, width: '15%', height: 'calc(100vh - 80px)', padding: '20px', background: 'white', boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)', zIndex: 999, overflowY: 'auto' }}>
          <TotalPaymentModal
           totalPrice={totalPrice}
           totalQuantity={totalQuantity}
-          
           />
+            </div>
             
           </Container>
           
