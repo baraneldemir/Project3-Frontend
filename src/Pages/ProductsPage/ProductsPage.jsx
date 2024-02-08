@@ -11,6 +11,7 @@ import Alert from 'react-bootstrap/Alert';
 export default function ProductsPage({user, setUser}) {
   const [show, setShow] = useState(false);
   const [search, setSearch] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("")
   const { products, getProducts, searchBar, result} = useProducts();
 
   const handleSearchChange = (e) => {
@@ -22,6 +23,13 @@ export default function ProductsPage({user, setUser}) {
     setShow(true)
   }
   
+  const handleCategoryChange = (category) => {
+    setSelectedCategory(category)
+  }
+
+  const filteredProducts = selectedCategory
+  ? products.filter((product) => product.category === selectedCategory)
+  : products;
 
   useEffect(() => {
     getProducts()
@@ -40,17 +48,19 @@ export default function ProductsPage({user, setUser}) {
             navbarScroll
           >
             <NavDropdown title="List of Products" id="navbarScrollingDropdown">
-              <NavDropdown.Item >Telescopes </NavDropdown.Item>
+              <NavDropdown.Item onClick={() => handleCategoryChange("")}>All</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item >Clothes</NavDropdown.Item>
+              <NavDropdown.Item onClick={() => handleCategoryChange("Telescope")}>Telescopes </NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item >Educational</NavDropdown.Item>
+              <NavDropdown.Item onClick={() => handleCategoryChange("Clothes")}>Clothes</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item >Toys</NavDropdown.Item>
+              <NavDropdown.Item onClick={() => handleCategoryChange("Educational")}>Educational</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item >Consumables</NavDropdown.Item>
+              <NavDropdown.Item onClick={() => handleCategoryChange("Collector's Item")}>Collector's Item</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item >Moon Rocks</NavDropdown.Item>
+              <NavDropdown.Item onClick={() => handleCategoryChange("Food")}>Food</NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item onClick={() => handleCategoryChange("Space Rocks")}>Space Rocks</NavDropdown.Item>
               
             </NavDropdown>
           </Nav>
@@ -110,17 +120,19 @@ export default function ProductsPage({user, setUser}) {
                   name={product.name}
                   image={product.image}
                   price={product.price}
+                  stock={product.stock}
                   user={user}
                   handleAlertChange={handleAlertChange}
                 />
               ))
-            : products.map((product) => (
+            : filteredProducts.map((product) => (
                 <ProductCard
                   key={product._id}
                   id={product._id}
                   name={product.name}
                   image={product.image}
                   price={product.price}
+                  stock={product.stock}
                   user={user}
                   handleAlertChange={handleAlertChange}
                 />
