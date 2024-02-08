@@ -36,7 +36,7 @@
   }
 
   .card {
-    padding-right: 10px !important;
+    /* padding-right: 10px !important; */
     /* background: none !important; */
     background-color: white !important;
     color: black !important;

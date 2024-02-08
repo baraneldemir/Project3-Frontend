@@ -32,8 +32,8 @@ export default function NavBar({ user, setUser}) {
 
     
     return (
-      <>
-        <Navbar bg="dark" data-bs-theme="dark">
+      <div>
+        <Navbar bg="dark" data-bs-theme="dark" style={{height:'8.5vh'}}>
           <Container>
             <Navbar.Brand >Cosmic Collectibles</Navbar.Brand>
             <Navbar.Toggle />
@@ -64,7 +64,7 @@ export default function NavBar({ user, setUser}) {
               <Navbar.Text>
                 {user ?
                 <div className='d-flex'>
-                <h3>Welcome {user.name}</h3>
+                <h5 style={{paddingTop: '4%'}}>Welcome {user.name}</h5>
                 &nbsp;
                 &nbsp;
                 <Button variant="secondary" onClick={ handleLogOut }>Log out</Button>
@@ -83,7 +83,7 @@ export default function NavBar({ user, setUser}) {
         </Navbar>
         <LoginFormModal show={showLoginFormModal} handleClose={() => setShowLoginFormModal(false)} setUser={setUser}/>
         <SignUpFormModal show={showSignupFormModal} handleClose={() => setShowSignupFormModal(false)} setUser={setUser}/>
-        </>
+        </div>
       );
     }
   

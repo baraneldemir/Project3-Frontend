@@ -5,7 +5,7 @@ import './Slide.css'
 export default function Slide() {
   return (
     <Carousel>
-      <Carousel.Item className="slide-image" interval={1000}>
+      <Carousel.Item className="slide-image" interval={8000}>
       <img
           className="d-block "
           
@@ -14,7 +14,7 @@ export default function Slide() {
         />
        
       </Carousel.Item>
-      <Carousel.Item className="slide-image" interval={1000}>
+      <Carousel.Item className="slide-image" interval={8000}>
       <img
           className="d-block "
           
@@ -22,7 +22,7 @@ export default function Slide() {
           alt="Second slide"
         />
       </Carousel.Item>
-      <Carousel.Item className="slide-image" interval={1000}>
+      <Carousel.Item className="slide-image" interval={8000}>
       <img
           className="d-block"
           
