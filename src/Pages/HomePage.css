@@ -1,0 +1,38 @@
+.slideContainer {
+    z-index: -1;
+}
+
+.subContainer {
+    z-index: 2
+
+}
+.product-list-container {
+    display: flex;
+    overflow-x: auto; /* Enable horizontal scrolling */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    width: 100%; /* Take full width of parent */
+  }
+  
+  /* Additional styles for ProductCard */
+  .product-card {
+    flex: 0 0 auto;
+    margin: 0 8px;
+    width: 250px; /* Adjust width as needed */
+  }
+  
+  /* Optional: Add styles for product card contents */
+  .product-card img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .product-card .product-name {
+    font-size: 16px;
+    margin-top: 8px;
+  }
+  
+  .product-card .product-price {
+    font-size: 14px;
+    color: #888;
+  }
