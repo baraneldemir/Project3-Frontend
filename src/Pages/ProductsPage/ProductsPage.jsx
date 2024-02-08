@@ -5,9 +5,12 @@ import { useProducts } from "../../contexts/ProductContext";
 import { Form, Button} from "react-bootstrap";
 import { useState } from "react";
 import { Navbar, Nav, NavDropdown  } from "react-bootstrap";
+import Alert from 'react-bootstrap/Alert';
+
 
 export default function ProductsPage({user, setUser}) {
-
+  const [showAddedAlert, setShowAddedAlert] = useState(false);
+  const [showStockAlert, setShowStockAlert] = useState(false);
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("")
   const { products, getProducts, searchBar, result} = useProducts();
@@ -17,6 +20,13 @@ export default function ProductsPage({user, setUser}) {
     searchBar(search);
   }
 
+  function handleAlertAddedChange() {
+    setShowAddedAlert(true)
+  }
+  function handleAlertStockChange() {
+    setShowStockAlert(true)
+  }
+  
   const handleCategoryChange = (category) => {
     setSelectedCategory(category)
   }
@@ -72,7 +82,51 @@ export default function ProductsPage({user, setUser}) {
        
       </Container>
     </Navbar>
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundImage: `url("https://stsci-opo.org/STScI-01GA6KNV1S3TP2JBPCDT8G826T.png")`, backgroundSize: 'cover', minHeight: '100vh'}}>
+    <div className="alert-container" style={{ 
+      position: "fixed",
+      top: "50%",
+      left: "50%",
+      transform: "translate(-50%, -50%)",
+      zIndex: "999"}}>
+  <Alert show={showAddedAlert} variant="success">
+    <img
+      variant="top"
+      alt="cartpng"
+      src="https://upload.wikimedia.org/wikipedia/commons/0/08/Check-mark.png"
+      style={{ objectFit: "contain", height: "15vh", display: "block", margin: "0 auto" }}
+    />
+    <p> Item has been added to the shopping cart.</p>
+    <hr />
+    <div className="d-flex justify-content-end">
+      <Button onClick={() => setShowAddedAlert(false)} variant="outline-success">
+        Close me
+      </Button>
+    </div>
+  </Alert>
+</div>
+<div className="alert-container" style={{ 
+      position: "fixed",
+      top: "50%",
+      left: "50%",
+      transform: "translate(-50%, -50%)",
+      zIndex: "999"}}>
+  <Alert show={showStockAlert} variant="danger">
+    <img
+      variant="top"
+      alt="cartpng"
+      src="https://static.vecteezy.com/system/resources/previews/017/178/032/original/round-cross-mark-symbol-with-transparent-background-free-png.png"
+      style={{ objectFit: "contain", height: "15vh", display: "block", margin: "0 auto" }}
+    />
+    <p> The item is currently out of stock.</p>
+    <hr />
+    <div className="d-flex justify-content-end">
+      <Button onClick={() => setShowStockAlert(false)} variant="outline-danger">
+        Close me
+      </Button>
+    </div>
+  </Alert>
+</div>
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundAttachment: "fixed", backgroundImage: `url("https://stsci-opo.org/STScI-01GA6KNV1S3TP2JBPCDT8G826T.png")`, backgroundSize: 'cover', minHeight: '100vh'}}>
       
       <Container className="my-4">
         <div
@@ -94,6 +148,8 @@ export default function ProductsPage({user, setUser}) {
                   price={product.price}
                   stock={product.stock}
                   user={user}
+                  handleAlertAddedChange={handleAlertAddedChange}
+                  handleAlertStockChange={handleAlertStockChange}
                 />
               ))
             : filteredProducts.map((product) => (
@@ -105,10 +161,13 @@ export default function ProductsPage({user, setUser}) {
                   price={product.price}
                   stock={product.stock}
                   user={user}
+                  handleAlertAddedChange={handleAlertAddedChange}
+                  handleAlertStockChange={handleAlertStockChange}
                 />
               ))}
         </div>
       </Container>
+      
       </div>
     </>
   );

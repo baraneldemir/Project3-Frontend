@@ -15,6 +15,7 @@ export const ProductsProvider = ({children}) => {
     const [result, setResult] = useState(false)
 
 
+
     function searchBar(search) {
         axios.get(`${process.env.REACT_APP_BACKEND_URL}/products/search?query=${search}`)
         .then(response => {
@@ -124,7 +125,6 @@ export const ProductsProvider = ({children}) => {
             isUpdated,
             setIsUpdated,
             updateProductStock
-
         }}>
             {children}
         </ProductContext.Provider>

@@ -4,7 +4,7 @@ import { currencyFormatter } from "../../utilities/currencyFormatter"
 import { useProducts } from '../../contexts/ProductContext'
 import { useState } from 'react'
 
-export default function ProductCard({id, name, image, price, user, stock}) {
+export default function ProductCard({id, name, image, price, user, stock, handleAlertAddedChange, handleAlertStockChange}) {
   const formattedPrice = currencyFormatter.format(price)
   const { addToCart, updateProductStock } = useProducts()
   const [localStock, setLocalStock] = useState(stock)
@@ -32,14 +32,17 @@ export default function ProductCard({id, name, image, price, user, stock}) {
       <Card.Footer >
         {user ?
         <>
-        {stock > 0 ? <Button variant="secondary" onClick={handleAddToCart}>Add To Shopping Cart</Button> : <Button variant="danger">Out of Stock</Button>}
+        {stock > 0 ? <Button variant="secondary" onClick={() => {
+          handleAlertAddedChange()
+          handleAddToCart()
+          }}>Add To Shopping Cart</Button> : <Button variant="danger" onClick={handleAlertStockChange}>Out of Stock</Button>}
         &nbsp;
         &nbsp;
        <Link to={`/products/${id}`} ><Button variant="secondary">Info</Button></Link>
        </>
         :
         <Link to={`/products/${id}`} ><Button variant="secondary">Info</Button></Link>     
-}
+      }
       </Card.Footer>
     </Card>
   )

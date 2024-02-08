@@ -38,7 +38,7 @@ export default function SingleProductPage({user, setUser}) {
     }, [product]);
 
     return (
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundImage: `url("https://png.pngtree.com/thumb_back/fw800/background/20230722/pngtree-the-vast-expanse-of-the-cosmos-a-3d-rendering-of-celestial-image_3851057.jpg")`, backgroundSize: 'cover', minHeight: '100vh'}}>
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundAttachment: "fixed",backgroundImage: `url("https://png.pngtree.com/thumb_back/fw800/background/20230722/pngtree-the-vast-expanse-of-the-cosmos-a-3d-rendering-of-celestial-image_3851057.jpg")`, backgroundSize: 'cover', minHeight: '100vh'}}>
         <Container>
             {product && (
                 <Row className="justify-content-md-center">
@@ -60,7 +60,7 @@ export default function SingleProductPage({user, setUser}) {
                     </Col>
                 </Row>
             )}
-        </Container>
+        </Container>        
       </div>
   );
 }
