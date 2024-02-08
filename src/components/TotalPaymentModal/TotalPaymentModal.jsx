@@ -5,7 +5,7 @@ import { currencyFormatter } from "../../utilities/currencyFormatter"
 import "./TotalPaymentModal.css"
 
 
-export default function TotalPaymentModal({ totalPrice, totalQuantity }) {
+export default function TotalPaymentModal({ totalPrice }) {
     const formattedPrice = currencyFormatter.format(totalPrice)
 
   return (
@@ -17,11 +17,11 @@ export default function TotalPaymentModal({ totalPrice, totalQuantity }) {
             alignItems: "center",
             
         }}>
-        <h2 class="title">
-        <span style={{fontSize:"22px"}} class="title-word title-word-1">Thanks for</span> &nbsp;
-        <span style={{fontSize:"22px"}} class="title-word title-word-2">Shopping with</span>&nbsp;
-        <span style={{fontSize:"22px"}} class="title-word title-word-3">Cosmic</span>&nbsp;
-        <span style={{fontSize:"22px"}} class="title-word title-word-4">Collectibles</span>
+        <h2 className="title">
+        <span style={{fontSize:"22px"}} className="title-word title-word-1">Thanks for</span> &nbsp;
+        <span style={{fontSize:"22px"}} className="title-word title-word-2">Shopping with</span>&nbsp;
+        <span style={{fontSize:"22px"}} className="title-word title-word-3">Cosmic</span>&nbsp;
+        <span style={{fontSize:"22px"}} className="title-word title-word-4">Collectibles</span>
         </h2>      
         </Card.Header>
         <Card.Title style={{
