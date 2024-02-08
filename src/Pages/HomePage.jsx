@@ -1,10 +1,28 @@
 
+// import Slide from "../components/Slide/Slide"
+
+// export default function HomePage() {
+//   return (
+//     <>    
+//         <Slide />
+//     </>
+//   )
+// }
+
 import Slide from "../components/Slide/Slide"
+import "./HomePage.css"
+import ProductsList from "../pages/ProductsList/ProductList"
 
 export default function HomePage() {
   return (
-    <>    
+    <div className="home-page">
+      <div className="slide-container">
         <Slide />
-    </>
+      </div>
+      <div className="product-container">
+        <ProductsList />
+      </div>
+    </div>
   )
 }
+
