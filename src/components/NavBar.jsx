@@ -17,6 +17,7 @@ export default function NavBar({ user, setUser}) {
 
   const { setResult } = useProducts()
   
+
   function handleClick() {
     setResult(false)
 
@@ -28,6 +29,7 @@ export default function NavBar({ user, setUser}) {
     navigate('/')
     setUser(null)
 }
+
     
     return (
       <>

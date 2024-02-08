@@ -4,10 +4,14 @@ import { useParams } from "react-router-dom";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import { currencyFormatter } from "../../utilities/currencyFormatter"
 
-export default function SingleProductPage() {
-    const {product, getSingleProduct} = useProducts()
+export default function SingleProductPage({user, setUser}) {
+    const {product, getSingleProduct, addToCart} = useProducts()
     const { id } = useParams()
     const formattedPrice = currencyFormatter.format(product.price)
+
+    const handleAddToCart = () => {
+      addToCart(id, 1, user._id)
+    }
 
     useEffect(() => {
       getSingleProduct(id)
@@ -31,7 +35,7 @@ export default function SingleProductPage() {
                                 <Card.Text>Stock Left: {product.stock}</Card.Text>
                             </Card.Body>
                             <Card.Footer>
-                              <Button variant="primary">Add To Shoppin Cart</Button>
+                              <Button variant="primary" onClick={handleAddToCart}>Add To Shopping Cart</Button>
                             </Card.Footer>
                         </Card>
                     </Col>
