@@ -35,7 +35,7 @@ export default function NavBar({ user, setUser}) {
       <>
         <Navbar bg="dark" data-bs-theme="dark">
           <Container>
-            <Navbar.Brand >Cosmic Collectables</Navbar.Brand>
+            <Navbar.Brand >Cosmic Collectibles</Navbar.Brand>
             <Navbar.Toggle />
                 <Nav>
                 <Nav.Link as={Link} to="/">Home</Nav.Link>
