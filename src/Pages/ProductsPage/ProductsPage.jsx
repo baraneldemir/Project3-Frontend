@@ -13,7 +13,7 @@ export default function ProductsPage({user, setUser}) {
   const [showStockAlert, setShowStockAlert] = useState(false);
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("")
-  const { products, getProducts, searchBar, result} = useProducts();
+  const { products, getProducts, searchBar, result, isUpdated} = useProducts();
 
   const handleSearchChange = (e) => {
     setSearch(e.target.value)
@@ -38,7 +38,7 @@ export default function ProductsPage({user, setUser}) {
   useEffect(() => {
     getProducts()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [isUpdated])
 
   return (
     <>
