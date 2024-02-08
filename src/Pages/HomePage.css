@@ -38,7 +38,14 @@
 
   .card {
     padding-right: 10px !important;
-    background: none !important;
-    color: #00feac !important;
-    
+    /* background: none !important; */
+    background-color: white !important;
+    color: black !important;
 }
+
+  .card:hover {
+    border: 5px solid black !important;
+  }
+  /* .card-footer {
+    background-color: gray !important;
+  } */
