@@ -1,8 +1,8 @@
-import PayPal from "../../PayPal/PayPal";
 import { Container, Stack } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import { useProducts } from "../../contexts/ProductContext";
 import ShoppingCartProductModal from "../../components/ShoppingCartProductModal/ShoppingCartProductModal";
+import TotalPaymentModal from "../../components/TotalPaymentModal/TotalPaymentModal";
 
 export default function ShoppingCartPage({ user }) {
 
@@ -20,6 +20,13 @@ export default function ShoppingCartPage({ user }) {
       
         // eslint-disable-next-line react-hooks/exhaustive-deps
       }, [isUpdated])
+
+      let totalPrice = 0;
+      let totalQuantity = 0;
+      cart?.products?.forEach((product) => {
+        totalPrice += product.productId.price * product.quantity;
+        totalQuantity += product.quantity;
+      }); 
 
       return (
         <>
@@ -45,8 +52,15 @@ export default function ShoppingCartPage({ user }) {
                 />
               ))}
             </div>
+            
+         <TotalPaymentModal
+          totalPrice={totalPrice}
+          totalQuantity={totalQuantity}
+          
+          />
+            
           </Container>
-          <PayPal />
+          
         </>
       )
       

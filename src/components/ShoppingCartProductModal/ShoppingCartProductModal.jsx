@@ -6,14 +6,17 @@ export default function ShoppinCartProductModal({name, image, price, quantity, p
   const { updateCart, deleteProduct } = useProducts()
   const formattedPrice = currencyFormatter.format(price)
 
-  const handleAdd = () => {
+  const handleAdd = () => {    
     updateCart(productId, quantity + 1, userId)
+    
   }
 
   const handleSubtract = () => {
     if (quantity > 1) {
       updateCart(productId, quantity - 1, userId)
     }
+    
+    
   }
 
   return (
