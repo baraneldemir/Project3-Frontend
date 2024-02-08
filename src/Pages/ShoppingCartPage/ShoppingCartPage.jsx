@@ -29,10 +29,10 @@ export default function ShoppingCartPage({ user }) {
       }); 
 
       return (
-        <>
-          <Container className='my-4'>
+        <div style={{backgroundImage: `url("https://d2r55xnwy6nx47.cloudfront.net/uploads/2020/09/Cosmic_Shear_1200_Social.jpg")`, backgroundSize: 'cover', minHeight: '100vh'}}>
+          <Container>
             <Stack direction="vertical" gap="2" className="mb-4">
-              <h1 className='me-auto'>Shopping Cart of {user.name}</h1>
+              <h1 className='me-auto pt-3' style={{color: 'white'}}>Shopping Cart of {user.name}</h1>
             </Stack>
             <div style={{
               display: "grid",
@@ -46,13 +46,15 @@ export default function ShoppingCartPage({ user }) {
                   name={product.productId.name}
                   image={product.productId.image}
                   price={product.productId.price}
+                  stock={product.productId.stock}
                   productId={product.productId._id}
                   quantity={product.quantity}
                   userId = {cart.userId}
                 />
               ))}
             </div>
-            
+            &nbsp;
+            &nbsp;
          <TotalPaymentModal
           totalPrice={totalPrice}
           totalQuantity={totalQuantity}
@@ -61,7 +63,7 @@ export default function ShoppingCartPage({ user }) {
             
           </Container>
           
-        </>
+        </div>
       )
       
 }

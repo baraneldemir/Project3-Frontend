@@ -3,7 +3,7 @@ import Carousel from 'react-bootstrap/Carousel';
 export default function Slide() {
   return (
     <Carousel>
-      <Carousel.Item interval={1000}>
+      <Carousel.Item interval={2000}>
       <img
           className="d-block w-100"
           src="https://d2r55xnwy6nx47.cloudfront.net/uploads/2020/09/Cosmic_Shear_1200_Social.jpg"

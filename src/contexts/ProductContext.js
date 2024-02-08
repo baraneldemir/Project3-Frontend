@@ -15,6 +15,7 @@ export const ProductsProvider = ({children}) => {
     const [result, setResult] = useState(false)
 
 
+
     function searchBar(search) {
         axios.get(`${process.env.REACT_APP_BACKEND_URL}/products/search?query=${search}`)
         .then(response => {
@@ -80,6 +81,19 @@ export const ProductsProvider = ({children}) => {
             console.error('Error updating cart:', error)
         })
     }
+
+    function updateProductStock(productId, stock, setStock) {
+        axios.put(`${process.env.REACT_APP_BACKEND_URL}/products/${productId}`, {
+            stock: stock
+        })
+            .then(response => {
+                console.log('Product stock updated:', response.data);
+                setStock(stock)
+                setIsUpdated(true)
+            })
+            .catch(error => console.error('Error updating product stock:', error));
+    }
+
     function deleteProduct(productId, userId) {
         console.log(productId)
         axios
@@ -109,8 +123,8 @@ export const ProductsProvider = ({children}) => {
             updateCart,
             deleteProduct,
             isUpdated,
-            setIsUpdated
-
+            setIsUpdated,
+            updateProductStock
         }}>
             {children}
         </ProductContext.Provider>

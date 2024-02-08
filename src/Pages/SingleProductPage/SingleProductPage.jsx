@@ -1,21 +1,44 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useProducts } from "../../contexts/ProductContext";
 import { useParams } from "react-router-dom";
-import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import { Container, Row, Col, Card, Button, Alert } from "react-bootstrap";
 import { currencyFormatter } from "../../utilities/currencyFormatter"
 
-export default function SingleProductPage() {
-    const {product, getSingleProduct} = useProducts()
+
+export default function SingleProductPage({user, setUser}) {
+    const {product, getSingleProduct, addToCart, updateProductStock, isUpdated, setIsUpdated} = useProducts()
     const { id } = useParams()
     const formattedPrice = currencyFormatter.format(product.price)
+    const [productStock, setProductStock] = useState(product.stock)
+
+    const handleAddToCart = () => {
+      if (productStock > 0) {
+        addToCart(id, 1, user._id)
+        const updatedStock = productStock - 1
+        updateProductStock(product._id, updatedStock, setProductStock)
+        setProductStock(updatedStock)
+      } else {
+        alert('No More Stock')
+      }
+      
+    }
 
     useEffect(() => {
       getSingleProduct(id)
+      setIsUpdated(false)
       // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, [isUpdated])
+
+    useEffect(() => {
+      if (product) {
+        setProductStock(product.stock);
+        setIsUpdated(false)
+      }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [product]);
 
     return (
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundImage: `url("https://stsci-opo.org/STScI-01GA6KNV1S3TP2JBPCDT8G826T.png")`, backgroundSize: 'cover', minHeight: '100vh'}}>
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundAttachment: "fixed",backgroundImage: `url("https://png.pngtree.com/thumb_back/fw800/background/20230722/pngtree-the-vast-expanse-of-the-cosmos-a-3d-rendering-of-celestial-image_3851057.jpg")`, backgroundSize: 'cover', minHeight: '100vh'}}>
         <Container>
             {product && (
                 <Row className="justify-content-md-center">
@@ -31,13 +54,13 @@ export default function SingleProductPage() {
                                 <Card.Text>Stock Left: {product.stock}</Card.Text>
                             </Card.Body>
                             <Card.Footer>
-                              <Button variant="primary">Add To Shoppin Cart</Button>
+                            {productStock > 0 ? <Button variant="primary" onClick={handleAddToCart}>Add To Shopping Cart</Button> : <Alert variant="danger">Out of Stock</Alert>}
                             </Card.Footer>
                         </Card>
                     </Col>
                 </Row>
             )}
-        </Container>
+        </Container>        
       </div>
   );
 }

@@ -2,13 +2,21 @@ import { Card, Button } from "react-bootstrap"
 import { Link } from "react-router-dom"
 import { currencyFormatter } from "../../utilities/currencyFormatter"
 import { useProducts } from '../../contexts/ProductContext'
+import { useState } from 'react'
 
-export default function ProductCard({id, name, image, price, user}) {
+export default function ProductCard({id, name, image, price, user, stock, handleAlertAddedChange, handleAlertStockChange}) {
   const formattedPrice = currencyFormatter.format(price)
-  const { addToCart } = useProducts()
+  const { addToCart, updateProductStock } = useProducts()
+  const [localStock, setLocalStock] = useState(stock)
 
   const handleAddToCart = () => {
-    addToCart(id, 1, user._id)
+    if (localStock > 0) {
+      addToCart(id, 1, user._id)
+      const updatedStock = localStock - 1
+      updateProductStock(id, updatedStock, setLocalStock)
+    } else {
+      alert('No More Stock')
+    }
   }
 
 
@@ -24,14 +32,17 @@ export default function ProductCard({id, name, image, price, user}) {
       <Card.Footer >
         {user ?
         <>
-        <Button variant="secondary" onClick={handleAddToCart}>Add To Shopping Cart</Button>
+        {stock > 0 ? <Button variant="secondary" onClick={() => {
+          handleAlertAddedChange()
+          handleAddToCart()
+          }}>Add To Shopping Cart</Button> : <Button variant="danger" onClick={handleAlertStockChange}>Out of Stock</Button>}
         &nbsp;
         &nbsp;
        <Link to={`/products/${id}`} ><Button variant="secondary">Info</Button></Link>
        </>
         :
         <Link to={`/products/${id}`} ><Button variant="secondary">Info</Button></Link>     
-}
+      }
       </Card.Footer>
     </Card>
   )
