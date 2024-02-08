@@ -6,6 +6,7 @@ import { Form, Button} from "react-bootstrap";
 import { useState } from "react";
 import { Navbar, Nav, NavDropdown  } from "react-bootstrap";
 import Alert from 'react-bootstrap/Alert';
+import './ProductsPage.css'
 
 
 export default function ProductsPage({user, setUser}) {
@@ -13,7 +14,12 @@ export default function ProductsPage({user, setUser}) {
   const [showStockAlert, setShowStockAlert] = useState(false);
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("")
-  const { products, getProducts, searchBar, result, isUpdated} = useProducts();
+  const { products, getProducts, searchBar, result, setResult, isUpdated} = useProducts();
+  
+
+  function handleClick() {
+    setResult(false)
+  }
 
   const handleSearchChange = (e) => {
     setSearch(e.target.value)
@@ -52,19 +58,33 @@ export default function ProductsPage({user, setUser}) {
             navbarScroll
           >
             <NavDropdown title="List of Products" id="navbarScrollingDropdown">
-              <NavDropdown.Item onClick={() => handleCategoryChange("")}>All</NavDropdown.Item>
+              <NavDropdown.Item onClick={() => { 
+                handleClick() 
+                handleCategoryChange("")}}>All</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item onClick={() => handleCategoryChange("Telescope")}>Telescopes </NavDropdown.Item>
+              <NavDropdown.Item onClick={() => {
+                handleClick() 
+                handleCategoryChange("Telescope")}}>Telescopes </NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item onClick={() => handleCategoryChange("Clothes")}>Clothes</NavDropdown.Item>
+              <NavDropdown.Item onClick={() => {
+                handleClick() 
+                handleCategoryChange("Clothes")}}>Clothes</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item onClick={() => handleCategoryChange("Educational")}>Educational</NavDropdown.Item>
+              <NavDropdown.Item onClick={() => {
+                handleClick() 
+                handleCategoryChange("Educational")}}>Educational</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item onClick={() => handleCategoryChange("Collector's Item")}>Collector's Item</NavDropdown.Item>
+              <NavDropdown.Item onClick={() => {
+                handleClick() 
+                handleCategoryChange("Collector's Item")}}>Collector's Item</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item onClick={() => handleCategoryChange("Food")}>Food</NavDropdown.Item>
+              <NavDropdown.Item onClick={() =>{ 
+                handleClick()
+                handleCategoryChange("Food")}}>Food</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item onClick={() => handleCategoryChange("Space Rocks")}>Space Rocks</NavDropdown.Item>
+              <NavDropdown.Item onClick={() => {
+                handleClick()
+                handleCategoryChange("Space Rocks")}}>Space Rocks</NavDropdown.Item>
               
             </NavDropdown>
           </Nav>
@@ -129,7 +149,7 @@ export default function ProductsPage({user, setUser}) {
     <div style={{ display: 'flex', justifyContent: 'center', backgroundAttachment: "fixed", backgroundImage: `url("https://stsci-opo.org/STScI-01GA6KNV1S3TP2JBPCDT8G826T.png")`, backgroundSize: 'cover', minHeight: '100vh'}}>
       
       <Container className="my-4">
-        <div
+        <div 
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
