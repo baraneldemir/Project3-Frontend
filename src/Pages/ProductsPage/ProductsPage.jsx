@@ -7,9 +7,6 @@ import { useState } from "react";
 import { Navbar, Nav, NavDropdown  } from "react-bootstrap";
 
 export default function ProductsPage({user, setUser}) {
-
-  
-
   const [search, setSearch] = useState("");
   const { products, getProducts, searchBar, result} = useProducts();
 
@@ -17,6 +14,7 @@ export default function ProductsPage({user, setUser}) {
     setSearch(e.target.value)
     searchBar(search);
   }
+
 
   useEffect(() => {
     getProducts()
@@ -63,7 +61,7 @@ export default function ProductsPage({user, setUser}) {
        
       </Container>
     </Navbar>
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundImage: `url("https://stsci-opo.org/STScI-01GA6KNV1S3TP2JBPCDT8G826T.png")`, backgroundSize: 'cover', minHeight: '100vh'}}>
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundAttachment: "fixed", backgroundImage: `url("https://stsci-opo.org/STScI-01GA6KNV1S3TP2JBPCDT8G826T.png")`, backgroundSize: 'cover', minHeight: '100vh'}}>
       
       <Container className="my-4">
         <div

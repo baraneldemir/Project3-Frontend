@@ -13,6 +13,29 @@ export const ProductsProvider = ({children}) => {
     const [cart, setCart] = useState()
     const [isUpdated, setIsUpdated] = useState()
     const [result, setResult] = useState(false)
+    const [comments, setComments] = useState([])
+
+
+    function getComments() {
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}/comments`)
+        .then(response => {
+            setComments(response.data)
+        })
+        .catch(error => console.error("Error fetching comments", error))
+    }
+    function getProductComments(productId) {
+        return comments.filter(comment => comment.productId?._id === productId)
+    }
+    async function addComment(newComment) {
+        try {
+            const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/comments/add`, newComment)
+            setComments([...comments, response.data])
+        }
+        catch(e) {
+            console.error("Error adding comment", e)
+        }
+
+    }
 
 
     function searchBar(search) {
@@ -108,8 +131,10 @@ export const ProductsProvider = ({children}) => {
             updateCart,
             deleteProduct,
             isUpdated,
-            setIsUpdated
-
+            setIsUpdated,
+            getComments,
+            addComment,
+            getProductComments
         }}>
             {children}
         </ProductContext.Provider>
