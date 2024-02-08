@@ -80,6 +80,18 @@ export const ProductsProvider = ({children}) => {
             console.error('Error updating cart:', error)
         })
     }
+
+    function updateProductStock(productId, stock) {
+        axios.put(`${process.env.REACT_APP_BACKEND_URL}/products/${productId}`, {
+            stock: stock
+        })
+            .then(response => {
+                console.log('Product stock updated:', response.data);
+                // No need to set any state here, assume stock is updated on backend only
+            })
+            .catch(error => console.error('Error updating product stock:', error));
+    }
+
     function deleteProduct(productId, userId) {
         console.log(productId)
         axios
@@ -109,7 +121,8 @@ export const ProductsProvider = ({children}) => {
             updateCart,
             deleteProduct,
             isUpdated,
-            setIsUpdated
+            setIsUpdated,
+            updateProductStock
 
         }}>
             {children}

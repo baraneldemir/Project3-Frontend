@@ -92,6 +92,7 @@ export default function ProductsPage({user, setUser}) {
                   name={product.name}
                   image={product.image}
                   price={product.price}
+                  stock={product.stock}
                   user={user}
                 />
               ))
@@ -102,6 +103,7 @@ export default function ProductsPage({user, setUser}) {
                   name={product.name}
                   image={product.image}
                   price={product.price}
+                  stock={product.stock}
                   user={user}
                 />
               ))}

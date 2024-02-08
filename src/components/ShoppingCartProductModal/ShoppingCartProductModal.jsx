@@ -2,21 +2,29 @@ import { Card, Button } from "react-bootstrap"
 import { useProducts } from '../../contexts/ProductContext'
 import { currencyFormatter } from "../../utilities/currencyFormatter"
 
-export default function ShoppinCartProductModal({name, image, price, quantity, productId, userId, setShoppingCart}) {
-  const { updateCart, deleteProduct } = useProducts()
+export default function ShoppinCartProductModal({name, image, price, quantity, productId, userId, stock}) {
+  const { updateCart, deleteProduct, updateProductStock } = useProducts()
   const formattedPrice = currencyFormatter.format(price)
 
   const handleAdd = () => {    
-    updateCart(productId, quantity + 1, userId)
-    
+    if (stock > 0) {
+      updateCart(productId, quantity + 1, userId)
+      updateProductStock(productId, stock - 1)
+    } else {
+      alert('No More Stock')
+    }
   }
 
   const handleSubtract = () => {
     if (quantity > 1) {
       updateCart(productId, quantity - 1, userId)
+      updateProductStock(productId, stock + 1)
     }
-    
-    
+  }
+
+  const handleDelete = () => {
+    updateProductStock(productId, stock + quantity)
+    deleteProduct(productId, userId)
   }
 
   return (
@@ -32,7 +40,7 @@ export default function ShoppinCartProductModal({name, image, price, quantity, p
         <Card.Text>Amount: {quantity}</Card.Text>
         <Button variant="outline-secondary" onClick={handleSubtract}>-</Button>
         <Button variant="outline-secondary" onClick={handleAdd}>+</Button>
-      <Button variant="outline-danger" onClick={() => deleteProduct(productId, userId)}>Delete</Button>
+      <Button variant="outline-danger" onClick={handleDelete}>Delete</Button>
       </Card.Footer>
     </Card>
   )
