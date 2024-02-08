@@ -78,6 +78,8 @@ export default function NavBar({ user, setUser }) {
                 :
                 <div className='d-flex'>
                   <Button variant="secondary" onClick={() => setShowLoginFormModal(true)}>Log in</Button>
+                  &nbsp;
+                  &nbsp;
                   <Button variant="secondary" onClick={() => setShowSignupFormModal(true)}>Sign up</Button>
                 </div>
               }
