@@ -5,6 +5,7 @@ import ContactUsAnimation from '../../components/Animation/ContactUsAnimation';
 
 export default function ContactusPage() {
   const [showSubmitAlert, setShowSubmitAlert] = useState(false);
+  const [isSmallScreen, setIsSmallScreen] = useState(false)
   const formRef = useRef(null);
 
   function handleAlert() {
@@ -18,6 +19,12 @@ export default function ContactusPage() {
       formRef.current.reset();
     }
   }
+
+  function checkScreenSize() {
+    setIsSmallScreen(window.innerWidth < 768);
+  }
+
+  window.addEventListener('resize', checkScreenSize);
 
   return (
     <div style={{color: 'white', backgroundAttachment: "fixed",backgroundImage: `url("https://stsci-opo.org/STScI-01GA6KNV1S3TP2JBPCDT8G826T.png")`, backgroundSize: 'cover', minHeight: '95vh'}}>
@@ -45,9 +52,13 @@ export default function ContactusPage() {
           <Form.Label>Your Message</Form.Label>
           <Form.Control as="textarea" rows={3} />
         </Form.Group>
-        <Button onClick={handleAlert}>Submit</Button>
-        
+        <Button onClick={handleAlert}>Submit</Button>           
       </Form>
+      {isSmallScreen && (
+          <div style={{ scale: "0.6", marginTop: '2vh', marginLeft: '2vh' }}>
+            <ContactUsAnimation />
+          </div>
+        )}
       <div
         className="alert-container"
         style={{
@@ -74,13 +85,17 @@ export default function ContactusPage() {
             </Button>
           </div>
         </Alert>
+        {isSmallScreen ? 
+        <>
+        </>
+        :
         <div style={{
           scale: "0.9",
           display: "flex"
         }}>
         <ContactUsAnimation />
         </div>
-        
+        }
       </div>
      
     </div>
