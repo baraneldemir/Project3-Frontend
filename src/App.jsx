@@ -9,8 +9,6 @@ import { getUser } from './utilities/users-service.js'
 import ShoppingCartPage from "./pages/ShoppingCartPage/ShoppingCartPage.jsx";
 import SingleProductPage from "./pages/SingleProductPage/SingleProductPage.jsx";
 
-
-
 function App() {
   const [user, setUser] = useState(getUser())
   // console.log(user)
