@@ -15,6 +15,7 @@ export default function ProductsPage({user, setUser}) {
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("")
   const { products, getProducts, searchBar, result, setResult, isUpdated} = useProducts();
+  const [isSmallScreen, setIsSmallScreen] = useState(false)
   
 
   function handleClick() {
@@ -37,6 +38,10 @@ export default function ProductsPage({user, setUser}) {
     setSelectedCategory(category)
   }
 
+  function checkScreenSize() {
+    setIsSmallScreen(window.innerWidth < 768);
+  }
+
   const filteredProducts = selectedCategory
   ? products.filter((product) => product.category === selectedCategory)
   : products;
@@ -45,6 +50,9 @@ export default function ProductsPage({user, setUser}) {
     getProducts()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isUpdated])
+
+
+  window.addEventListener('resize', checkScreenSize);
 
   return (
     <>
@@ -97,7 +105,11 @@ export default function ProductsPage({user, setUser}) {
               className="me-2"
               aria-label="Search"
             />
+            {isSmallScreen ? 
+            <></>
+            :
             <Button variant="outline-success">Search</Button>
+            }
           </Form>
        
       </Container>
