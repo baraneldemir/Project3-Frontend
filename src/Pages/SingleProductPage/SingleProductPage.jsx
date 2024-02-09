@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useProducts } from "../../contexts/ProductContext";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { Container, Row, Col, Card, Button, Alert } from "react-bootstrap";
 import { currencyFormatter } from "../../utilities/currencyFormatter"
 
@@ -45,7 +45,7 @@ export default function SingleProductPage({user, setUser}) {
                     <Col md={8}>
                         <Card>
                           <div style={{height: "500px", overflow: "hidden"}}>
-                            <Card.Img variant="top" src={product.image} alt={product.name} style={{objectFit: "contain", height: "100%"}} />
+                            <Card.Img variant="top" src={product.image} alt={product.name} style={{ objectFit: "contain", height: "100%", background: 'url(https://wallpapers.com/images/featured/cosmic-background-tr6ptidf81on0l2b.webp)'}} />
                           </div>
                             <Card.Body>
                                 <Card.Title>{product.name}</Card.Title>
@@ -54,7 +54,13 @@ export default function SingleProductPage({user, setUser}) {
                                 <Card.Text>Stock Left: {product.stock}</Card.Text>
                             </Card.Body>
                             <Card.Footer>
-                            {productStock > 0 ? <Button variant="primary" onClick={handleAddToCart}>Add To Shopping Cart</Button> : <Alert variant="danger">Out of Stock</Alert>}
+                            {user ? 
+                             productStock > 0 ? <Button variant="primary" onClick={handleAddToCart}>Add To Shopping Cart</Button> : <Alert variant="danger">Out of Stock</Alert>
+                              :
+                              <></>
+                            }
+                            &nbsp;
+                            <Link to={'/products'} ><Button variant="secondary" >Back to Products</Button></Link>
                             </Card.Footer>
                         </Card>
                     </Col>
