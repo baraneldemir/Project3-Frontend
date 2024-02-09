@@ -148,8 +148,8 @@ export default function ProductsPage({user, setUser}) {
 </div>
     <div style={{ display: 'flex', justifyContent: 'center', backgroundAttachment: "fixed", backgroundImage: `url("https://stsci-opo.org/STScI-01GA6KNV1S3TP2JBPCDT8G826T.png")`, backgroundSize: 'cover', minHeight: '100vh'}}>
       
-      <Container className="my-4">
-        <div 
+      <Container className="my-4 fade-in">
+        <div
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
