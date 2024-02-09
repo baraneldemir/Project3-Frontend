@@ -75,7 +75,7 @@ export default function ContactusPage() {
           </div>
         </Alert>
         <div style={{
-          scale: "1.18",
+          scale: "0.9",
           display: "flex"
         }}>
         <ContactUsAnimation />
