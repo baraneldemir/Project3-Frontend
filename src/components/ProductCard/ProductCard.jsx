@@ -5,6 +5,7 @@ import { useProducts } from '../../contexts/ProductContext'
 import { useState, useEffect } from 'react'
 
 
+
 export default function ProductCard({id, name, image, price, user, stock, handleAlertAddedChange, handleAlertStockChange}) {
   const formattedPrice = currencyFormatter.format(price)
   const { product, addToCart, updateProductStock, isUpdated, setIsUpdated, getSingleProduct } = useProducts()
@@ -56,7 +57,7 @@ export default function ProductCard({id, name, image, price, user, stock, handle
           }}>Add To Shopping Cart</Button> : <Button variant="outline-danger" onClick={handleAlertStockChange}>Out of Stock</Button>}
         &nbsp;
         &nbsp;
-       <Link to={`/products/${id}`} style={{ textDecoration: 'none' }}><Button variant="outline-light">Info</Button></Link>
+       <Link to={`/products/${id}`} style={{ textDecoration: 'none' }}><Button variant="outline-light">Info</Button></Link>          
        </>
         :
         <Link to={`/products/${id}`} style={{ textDecoration: 'none' }}><Button variant="outline-light">Info</Button></Link>     

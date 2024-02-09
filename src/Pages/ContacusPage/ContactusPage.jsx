@@ -1,6 +1,7 @@
 import { Button, Alert } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 import { useState, useRef } from 'react';
+import ContactUsAnimation from '../../components/Animation/ContactUsAnimation';
 
 export default function ContactusPage() {
   const [showSubmitAlert, setShowSubmitAlert] = useState(false);
@@ -20,7 +21,7 @@ export default function ContactusPage() {
 
   return (
     <div style={{color: 'white', backgroundAttachment: "fixed",backgroundImage: `url("https://stsci-opo.org/STScI-01GA6KNV1S3TP2JBPCDT8G826T.png")`, backgroundSize: 'cover', minHeight: '100vh'}}>
-      <h1 style={{marginLeft: '2%', paddingTop: '2%'}}>If you have any questions, ask below and we will get back to you as soon as possible!</h1>
+      {/* <h1 style={{marginLeft: '2%', paddingTop: '2%'}}>If you have any questions, ask below and we will get back to you as soon as possible!</h1> */}
       <Form
         ref={formRef}
         style={{
@@ -28,7 +29,8 @@ export default function ContactusPage() {
           justifyContent: "start",
           justifyItems: "stretch",
           paddingTop: "2%",
-          marginLeft: "7%"
+          marginLeft: "7%",
+          marginRight: "5%"
         }}
       >
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -44,6 +46,7 @@ export default function ContactusPage() {
           <Form.Control as="textarea" rows={3} />
         </Form.Group>
         <Button onClick={handleAlert}>Submit</Button>
+        
       </Form>
       <div
         className="alert-container"
@@ -52,7 +55,8 @@ export default function ContactusPage() {
           top: "50%",
           left: "50%",
           transform: "translate(-50%, -50%)",
-          zIndex: "999"
+          zIndex: "999",
+          marginLeft: "10%"
         }}
       >
         <Alert show={showSubmitAlert} variant="outline-success">
@@ -70,7 +74,15 @@ export default function ContactusPage() {
             </Button>
           </div>
         </Alert>
+        <div style={{
+          scale: "0.9",
+          display: "flex"
+        }}>
+        <ContactUsAnimation />
+        </div>
+        
       </div>
+     
     </div>
   );
 }
