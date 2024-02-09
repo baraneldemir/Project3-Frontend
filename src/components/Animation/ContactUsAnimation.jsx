@@ -5,7 +5,6 @@ export default function ContactUsAnimation() {
   return (
     <div>
         <Lottie animationData={animationData} />
-      
     </div>
   )
 }

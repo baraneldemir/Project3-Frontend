@@ -9,6 +9,8 @@ import { getUser } from './utilities/users-service.js'
 import ShoppingCartPage from "./pages/ShoppingCartPage/ShoppingCartPage.jsx";
 import SingleProductPage from "./pages/SingleProductPage/SingleProductPage.jsx";
 
+
+
 function App() {
   const [user, setUser] = useState(getUser())
   console.log(user)
@@ -18,7 +20,7 @@ function App() {
       <NavBar user={user} setUser={setUser} />
         <Routes>
             <Route path="/" element={ <HomePage />}/>
-            <Route path="/products/:id" element={ <SingleProductPage user={user} setUser={setUser}/>}/>
+            <Route path="/products/:id" element={ <SingleProductPage />}/>
             <Route path="/products" element={ <ProductsPage user={user} setUser={setUser}/> }/>
             <Route path="/aboutus" element={ <AboutusPage /> }/>
             <Route path="/contactus" element={ <ContactusPage /> }/>
