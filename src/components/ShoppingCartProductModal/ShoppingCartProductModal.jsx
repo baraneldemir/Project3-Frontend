@@ -38,8 +38,8 @@ export default function ShoppinCartProductModal({name, image, price, quantity, p
       </Card.Body>
       <Card.Footer >
         <Card.Text>Amount: {quantity}</Card.Text>
-        <Button variant="outline-secondary" onClick={handleSubtract}>-</Button>
-        <Button variant="outline-secondary" onClick={handleAdd}>+</Button>
+        <Button variant="outline-secondary" onClick={handleSubtract}>-</Button> &nbsp;
+        <Button variant="outline-secondary" onClick={handleAdd}>+</Button> &nbsp;
       <Button variant="outline-danger" onClick={handleDelete}>Delete</Button>
       </Card.Footer>
     </Card>

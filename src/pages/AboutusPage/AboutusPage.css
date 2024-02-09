@@ -1,0 +1,74 @@
+.aboutus-container {
+    padding: 2% 10%;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    background-attachment: fixed;
+    background-image: url("https://stsci-opo.org/STScI-01GA6KNV1S3TP2JBPCDT8G826T.png");
+    background-size: cover;
+    min-height: 100vh;
+    font-size: 3vmin;
+  }
+  
+  .aboutus-content {
+    max-width: 800px;
+    margin: auto;
+  }
+  
+  .aboutus-content h1,
+  .aboutus-content h2 {
+    color: white;
+  }
+  
+  .aboutus-content p {
+    margin-bottom: 1.5em;
+    line-height: 1.6;
+  }
+  
+  .aboutus-content ul {
+    margin-bottom: 1.5em;
+  }
+  
+  .aboutus-content ul li {
+    margin-bottom: 0.5em;
+  }
+  
+  .aboutus-content em {
+    font-style: italic;
+  }
+  
+  .aboutus-content strong {
+    font-weight: bold;
+  }
+  
+  .fade-in {
+    opacity: 0;
+    animation: fadeIn 3s forwards;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  /* Delayed fade-in animation */
+  .fade-in-delay {
+    opacity: 0;
+    animation: fadeInDelay 5s forwards;
+  }
+  
+  @keyframes fadeInDelay {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  /* Add more animations as needed */
+  
