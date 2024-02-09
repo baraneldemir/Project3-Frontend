@@ -59,7 +59,7 @@ export default function ProductsPage({user}) {
  
       
       <Container className="subContainer" >
-        <div  className="singleProduct" style={{            
+        <div  className="singleProduct fade-in" style={{            
             display: "grid",
             gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
             gap: "1rem",

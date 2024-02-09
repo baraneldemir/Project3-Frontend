@@ -21,7 +21,7 @@ export default function TotalPaymentModal({ totalPrice }) {
         <span style={{fontSize:"22px"}} className="title-word title-word-1">Thanks for</span>
         <span style={{fontSize:"22px"}} className="title-word title-word-2"> shopping with</span>
         <span style={{fontSize:"22px"}} className="title-word title-word-3"> Cosmic</span>
-        <span style={{fontSize:"22px"}} className="title-word title-word-4"> Collectibles</span>
+        <span style={{fontSize:"22px"}} className="title-word title-word-4"> Collectibles!</span>
         </h2>      
         </Card.Header>
         <Card.Title style={{
