@@ -85,6 +85,10 @@ export default function ProductsPage({user, setUser}) {
               <NavDropdown.Item onClick={() => {
                 handleClick()
                 handleCategoryChange("Space Rocks")}}>Space Rocks</NavDropdown.Item>
+                <NavDropdown.Divider />
+              <NavDropdown.Item onClick={() => {
+              handleClick()
+              handleCategoryChange("Books")}}>Books</NavDropdown.Item>
               
             </NavDropdown>
           </Nav>
