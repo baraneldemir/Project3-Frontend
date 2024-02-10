@@ -16,6 +16,7 @@ export default function ShoppingCartPage({ user }) {
 
     useEffect(() => {
       getShoppingCartProducts(user._id)
+      console.log(shoppingCart)
       setShoppingCart(true)
       setIsUpdated(false)
       
