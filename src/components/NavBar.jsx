@@ -36,6 +36,19 @@ export default function NavBar({ user, setUser }) {
     <div>
       <Navbar bg="dark" variant="dark" expand="lg">
         <Container>
+        <Nav.Link as={Link} to="/">
+                    <img
+                      src="https://i.imgur.com/XXzwrX6.png"
+                      width="60vh"
+                      height="60vh"
+                      className="d-inline-block align-top"
+                      alt="Logo"
+                    />
+                  </Nav.Link>
+                  &nbsp;
+                  
+                  &nbsp;
+                  &nbsp;
           <Navbar.Brand>Cosmic Collectibles</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
           <Navbar.Collapse id="responsive-navbar-nav">
