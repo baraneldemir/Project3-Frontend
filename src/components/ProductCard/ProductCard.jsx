@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import { currencyFormatter } from "../../utilities/currencyFormatter"
 import { useProducts } from '../../contexts/ProductContext'
 import { useState, useEffect } from 'react'
+import { SignUpFormModal} from '../../components/SignUpFormModal/SignUpFormModal'
 
 
 
@@ -75,7 +76,7 @@ export default function ProductCard({id, name, image, price, user, stock, handle
       }
       </Card.Footer>
     </Card>
-    <SignUpFormModal show={showSignupFormModal} handleClose={() => setShowSignupFormModal(false)} setUser={setUser} />
+    <SignUpFormModal show={showSignupFormModal} handleClose={() => setShowSignupFormModal(false)} />
     </>
   )
 }
