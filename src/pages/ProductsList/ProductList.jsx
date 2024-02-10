@@ -2,7 +2,7 @@ import ProductCard from "../../components/ProductCard/ProductCard";
 import { Container } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import { useProducts } from "../../contexts/ProductContext";
-import { Alert, Button } from "react-bootstrap";
+import { Alert } from "react-bootstrap";
 import "../HomePage.css"
 
 export default function ProductsPage({user}) {
@@ -22,6 +22,7 @@ export default function ProductsPage({user}) {
 
 
   useEffect(() => {
+    clearTimeout(timeIdList)
     getProducts()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -50,13 +51,22 @@ export default function ProductsPage({user}) {
     } else { return 4 }
   }
 
+  const timeIdList = setTimeout(() => {
+    // After 3 seconds set the show value to false
+    setShowAddedAlert(false)
+    setShowStockAlert(false)
+  }, 2000)
+
   useEffect(() => {
+   
+    
     function handleResize() {
       const count = calculateProductCount()
       setProductCount(count)
       setRandomProducts(getRandomProducts(products, count));
     }
-
+    
+    
     window.addEventListener('resize', handleResize);
     return () => {
       window.removeEventListener('resize', handleResize);
@@ -104,9 +114,9 @@ export default function ProductsPage({user}) {
     <p> Item has been added to the shopping cart.</p>
     <hr />
     <div className="d-flex justify-content-end">
-      <Button onClick={() => setShowAddedAlert(false)} variant="outline-success">
+      {/* <Button onClick={() => setShowAddedAlert(false)} variant="outline-success">
         Close me
-      </Button>
+      </Button> */}
     </div>
   </Alert>
 </div>
@@ -126,9 +136,9 @@ export default function ProductsPage({user}) {
     <p> The item is currently out of stock.</p>
     <hr />
     <div className="d-flex justify-content-end">
-      <Button onClick={() => setShowStockAlert(false)} variant="outline-danger">
+      {/* <Button onClick={() => setShowStockAlert(false)} variant="outline-danger">
         Close me
-      </Button>
+      </Button> */}
     </div>
   </Alert>
 </div>

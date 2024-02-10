@@ -46,8 +46,19 @@ export default function ProductsPage({user, setUser}) {
   ? products.filter((product) => product.category === selectedCategory)
   : products;
 
+  const timeId = setTimeout(() => {
+    // After 3 seconds set the show value to false
+    setShowAddedAlert(false)
+    setShowStockAlert(false)
+  }, 2000)
+
   useEffect(() => {
-    getProducts()
+    
+    
+      clearTimeout(timeId)
+      getProducts()
+    
+    
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isUpdated])
 
@@ -56,6 +67,7 @@ export default function ProductsPage({user, setUser}) {
 
   return (
     <>
+    
     <Navbar className="bg-body-tertiary"  data-bs-theme="dark">
       <Container >
         <Navbar.Brand >Categories</Navbar.Brand>
@@ -131,9 +143,9 @@ export default function ProductsPage({user, setUser}) {
     <p> Item has been added to the shopping cart.</p>
     <hr />
     <div className="d-flex justify-content-end">
-      <Button onClick={() => setShowAddedAlert(false)} variant="outline-success">
+      {/* <Button onClick={() => setShowAddedAlert(false)} variant="outline-success">
         Close me
-      </Button>
+      </Button> */}
     </div>
   </Alert>
 </div>
@@ -153,9 +165,9 @@ export default function ProductsPage({user, setUser}) {
     <p> The item is currently out of stock.</p>
     <hr />
     <div className="d-flex justify-content-end">
-      <Button onClick={() => setShowStockAlert(false)} variant="outline-danger">
+      {/* <Button onClick={() => setShowStockAlert(false)} variant="outline-danger">
         Close me
-      </Button>
+      </Button> */}
     </div>
   </Alert>
 </div>
