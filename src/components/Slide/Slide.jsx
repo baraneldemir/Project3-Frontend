@@ -18,7 +18,7 @@ export default function Slide() {
       <img
           className="d-block "
           
-          src="https://png.pngtree.com/thumb_back/fw800/background/20230722/pngtree-the-vast-expanse-of-the-cosmos-a-3d-rendering-of-celestial-image_3851057.jpg"
+          src="https://www.gannett-cdn.com/-mm-/df58975a4db91bea7e8c0875366a3c24eebdcab5/c=0-31-1280-993/local/-/media/2017/02/01/Reno/RGJ/636215634914521096-image001.jpg?width=2560"
           alt="Second slide"
         />
       </Carousel.Item>

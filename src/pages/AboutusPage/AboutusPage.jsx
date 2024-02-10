@@ -4,8 +4,9 @@ import './AboutusPage.css';
 export default function AboutusPage() {
   return (
     <div className="aboutus-container">
-      <div className="aboutus-content">
-        <h1 className="fade-in">About Cosmic Collectibles</h1>
+      <div className="aboutus-content" style={{ boxShadow: "10px 5px 5px 5px black", borderRadius: "8%", padding:"5vh", backgroundColor: "hsla(0, 0%, 0%, 0.4)"}}>
+        <h1 className="fade-in" style={{textAlign: "center"}}>About Cosmic Collectibles</h1>
+        &nbsp;
         <p className="fade-in-delay">Welcome to Cosmic Collectibles, your premier destination for all things celestial and cosmic. Founded by three passionate individuals – Alex, Baran, and Behzad – Cosmic Collectibles is the culmination of our shared love for the wonders of the universe and our dedication to providing enthusiasts with high-quality, unique items that celebrate the cosmos.</p>
         
         <h2 className="fade-in">Our Mission</h2>
