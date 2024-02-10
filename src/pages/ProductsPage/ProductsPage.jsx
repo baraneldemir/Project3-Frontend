@@ -39,7 +39,7 @@ export default function ProductsPage({user, setUser}) {
   }
 
   function checkScreenSize() {
-    setIsSmallScreen(window.innerWidth < 768);
+    setIsSmallScreen(window.innerWidth > 800);
   }
 
   const filteredProducts = selectedCategory
@@ -106,9 +106,10 @@ export default function ProductsPage({user, setUser}) {
               aria-label="Search"
             />
             {isSmallScreen ? 
-            <></>
-            :
+          
             <Button variant="outline-success">Search</Button>
+            :
+            <></>
             }
           </Form>
        
@@ -180,6 +181,7 @@ export default function ProductsPage({user, setUser}) {
                   price={product.price}
                   stock={product.stock}
                   user={user}
+                  setUser={setUser}
                   handleAlertAddedChange={handleAlertAddedChange}
                   handleAlertStockChange={handleAlertStockChange}
                 />
@@ -193,6 +195,7 @@ export default function ProductsPage({user, setUser}) {
                   price={product.price}
                   stock={product.stock}
                   user={user}
+                  setUser={setUser}
                   handleAlertAddedChange={handleAlertAddedChange}
                   handleAlertStockChange={handleAlertStockChange}
                 />

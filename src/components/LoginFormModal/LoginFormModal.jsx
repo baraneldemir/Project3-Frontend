@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Modal, Form, Button } from 'react-bootstrap';
 import * as usersService from '../../utilities/users-service';
 
-export default function LoginFormModal({ setUser, show, handleClose }) {
+export default function LoginFormModal({ user, setUser, show, handleClose }) {
   const [credentials, setCredentials] = useState({
     email: '',
     password: ''

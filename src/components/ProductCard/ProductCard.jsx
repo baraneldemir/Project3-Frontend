@@ -3,19 +3,22 @@ import { Link } from "react-router-dom"
 import { currencyFormatter } from "../../utilities/currencyFormatter"
 import { useProducts } from '../../contexts/ProductContext'
 import { useState, useEffect } from 'react'
-import SignUpFormModal from '../../components/SignUpFormModal/SignUpFormModal'
+import LoginFormModal from "../LoginFormModal/LoginFormModal"
 import { Alert } from "react-bootstrap"
 
 
 
-export default function ProductCard({id, name, image, price, user, stock, handleAlertAddedChange, handleAlertStockChange}) {
+
+
+export default function ProductCard({id, name, image, price, user, stock, handleAlertAddedChange, handleAlertStockChange, setUser}) {
   const formattedPrice = currencyFormatter.format(price)
   const { product, addToCart, updateProductStock, isUpdated, setIsUpdated, getSingleProduct } = useProducts()
   const [localStock, setLocalStock] = useState(stock)
   const [showSignupFormModal, setShowSignupFormModal] = useState(false);
   const [showAddedAlert, setShowAddedAlert] = useState(false);
   const [showStockAlert, setShowStockAlert] = useState(false);
-  
+
+
   
 
   const handleAddToCart = () => {
@@ -70,13 +73,17 @@ export default function ProductCard({id, name, image, price, user, stock, handle
        </>
         :
         <>
-        
+        {stock > 0 ? <Button variant="outline-light" onClick={() => {
+          setShowSignupFormModal(true)
+          }}>Add To Shopping Cart</Button> : <Button variant="outline-danger" onClick={handleAlertStockChange}>Out of Stock</Button>}
+        &nbsp;
+        &nbsp;
         <Link to={`/products/${id}`} style={{ textDecoration: 'none' }}><Button variant="outline-light">Info</Button></Link> 
         </>    
       }
       </Card.Footer>
     </Card>
-    <SignUpFormModal show={showSignupFormModal} handleClose={() => setShowSignupFormModal(false)} />
+    <LoginFormModal show={showSignupFormModal} handleClose={() => setShowSignupFormModal(false)} setUser={setUser} />
     <div className="alert-container" style={{ 
       position: "fixed",
       top: "50%",
