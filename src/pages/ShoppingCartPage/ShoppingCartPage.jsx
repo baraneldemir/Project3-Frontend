@@ -18,7 +18,7 @@ export default function ShoppingCartPage({ user }) {
       getShoppingCartProducts(user._id)
       setShoppingCart(true)
       setIsUpdated(false)
-      console.log(shoppingCart)
+      
       
         // eslint-disable-next-line react-hooks/exhaustive-deps
       }, [isUpdated])

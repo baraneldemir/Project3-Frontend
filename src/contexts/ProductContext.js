@@ -20,7 +20,7 @@ export const ProductsProvider = ({children}) => {
         axios.get(`${process.env.REACT_APP_BACKEND_URL}/products/search?query=${search}`)
         .then(response => {
             setResult(response.data)
-            console.log(response.data)
+          
         })
         .catch(error => {
             console.error("error searching products", error)
@@ -30,7 +30,7 @@ export const ProductsProvider = ({children}) => {
     function getShoppingCartProducts(userId) {
         axios.get(`${process.env.REACT_APP_BACKEND_URL}/cart?userId=${userId}`)
         .then(response => {
-            console.log(response.data)
+            
             setCart(response.data)
         })
         .catch(error => console.error("Error fetching cart products", error))
@@ -43,7 +43,7 @@ export const ProductsProvider = ({children}) => {
             userId: userId
         })
         .then(response => {
-            console.log("Product add to cart", response.data)
+          
             setCart(response.data)
              
         })
@@ -60,7 +60,7 @@ export const ProductsProvider = ({children}) => {
     }
 
     function getSingleProduct(productId) {
-        console.log(productId)
+        
         axios.get(`${process.env.REACT_APP_BACKEND_URL}/products/${productId}`)
         .then(response => { 
             setProduct(response.data)
@@ -70,7 +70,7 @@ export const ProductsProvider = ({children}) => {
 
     function updateCart(productId, quantity, userId) {
         setCart(false)
-        console.log(productId, userId)
+       
         axios.put(`${process.env.REACT_APP_BACKEND_URL}/cart/update/${productId}?userId=${userId}`, {quantity})
         .then(response => {
             console.log('Cart Updated', response.data)
@@ -95,7 +95,7 @@ export const ProductsProvider = ({children}) => {
     }
 
     function deleteProduct(productId, userId) {
-        console.log(productId)
+      
         axios
           .delete(`${process.env.REACT_APP_BACKEND_URL}/cart/remove/${productId}?userId=${userId}`)
           .then(() => {
