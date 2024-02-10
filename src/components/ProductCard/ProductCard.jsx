@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import { currencyFormatter } from "../../utilities/currencyFormatter"
 import { useProducts } from '../../contexts/ProductContext'
 import { useState, useEffect } from 'react'
-import { SignUpFormModal} from '../../components/SignUpFormModal/SignUpFormModal'
+import SignUpFormModal from '../../components/SignUpFormModal/SignUpFormModal'
 
 
 
