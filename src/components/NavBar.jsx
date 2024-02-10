@@ -89,12 +89,23 @@ export default function NavBar({ user, setUser }) {
                   </div>
                 </>
                 :
+                <>
+                <Nav.Link onClick={() => setShowLoginFormModal(true)}>
+                    <img
+                      src="https://www.shareicon.net/data/2016/02/07/281223_cart_512x512.png"
+                      width="40vh"
+                      height="35vh"
+                      className="d-inline-block align-top"
+                      alt="Shopping cart logo"
+                    />
+                  </Nav.Link>
                 <div className='d-flex'>
                   <Button variant="secondary" onClick={() => setShowLoginFormModal(true)}>Log in</Button>
                   &nbsp;
                   &nbsp;
                   <Button variant="secondary" onClick={() => setShowSignupFormModal(true)}>Sign up</Button>
                 </div>
+                </>
               }
             </Nav>
           </Navbar.Collapse>
