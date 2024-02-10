@@ -70,11 +70,7 @@ export default function ProductCard({id, name, image, price, user, stock, handle
        </>
         :
         <>
-        {stock > 0 ? <Button variant="outline-light" onClick={() => {
-          setShowSignupFormModal(true)
-          }}>Add To Shopping Cart</Button> : <Button variant="outline-danger" onClick={handleAlertStockChange}>Out of Stock</Button>}
-        &nbsp;
-        &nbsp;
+        
         <Link to={`/products/${id}`} style={{ textDecoration: 'none' }}><Button variant="outline-light">Info</Button></Link> 
         </>    
       }
