@@ -5,6 +5,7 @@ import ProductsList from "../pages/ProductsList/ProductList"
 
 
 export default function HomePage() {
+  
   return (
     <div className="home-page">
       <div className="slide-container" >
