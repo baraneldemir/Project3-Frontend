@@ -10,6 +10,8 @@ export default function ProductCard({id, name, image, price, user, stock, handle
   const formattedPrice = currencyFormatter.format(price)
   const { product, addToCart, updateProductStock, isUpdated, setIsUpdated, getSingleProduct } = useProducts()
   const [localStock, setLocalStock] = useState(stock)
+  const [showSignupFormModal, setShowSignupFormModal] = useState(false);
+  
 
   const handleAddToCart = () => {
     if (localStock > 0) {
@@ -39,7 +41,9 @@ export default function ProductCard({id, name, image, price, user, stock, handle
 
 
 
+
   return (
+    <>
     <Card style={{ border: "2px solid #001F3F", borderRadius: "10px", boxShadow: "0 4px 8px 0 rgba(0,0,0,0.2)", transition: "0.3s"}}>
       <div style={{ height: "22vh", overflow: "hidden"}}>
         <Card.Img variant="top" src={image} style={{ objectFit: "contain", height: "100%", background: 'url(https://wallpapers.com/images/featured/cosmic-background-tr6ptidf81on0l2b.webp)'}}/>
@@ -60,9 +64,18 @@ export default function ProductCard({id, name, image, price, user, stock, handle
        <Link to={`/products/${id}`} style={{ textDecoration: 'none' }}><Button variant="outline-light">Info</Button></Link>          
        </>
         :
-        <Link to={`/products/${id}`} style={{ textDecoration: 'none' }}><Button variant="outline-light">Info</Button></Link>     
+        <>
+        {stock > 0 ? <Button variant="outline-light" onClick={() => {
+          setShowSignupFormModal(true)
+          }}>Add To Shopping Cart</Button> : <Button variant="outline-danger" onClick={handleAlertStockChange}>Out of Stock</Button>}
+        &nbsp;
+        &nbsp;
+        <Link to={`/products/${id}`} style={{ textDecoration: 'none' }}><Button variant="outline-light">Info</Button></Link> 
+        </>    
       }
       </Card.Footer>
     </Card>
+    <SignUpFormModal show={showSignupFormModal} handleClose={() => setShowSignupFormModal(false)} setUser={setUser} />
+    </>
   )
 }
