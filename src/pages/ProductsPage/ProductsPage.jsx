@@ -16,8 +16,8 @@ export default function ProductsPage({user, setUser}) {
   const [selectedCategory, setSelectedCategory] = useState("")
   const { products, getProducts, searchBar, result, setResult, isUpdated} = useProducts();
   const [isSmallScreen, setIsSmallScreen] = useState(false)
-  
 
+  
   function handleClick() {
     setResult(false)
   }
