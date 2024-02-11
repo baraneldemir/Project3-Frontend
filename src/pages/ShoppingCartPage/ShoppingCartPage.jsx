@@ -75,6 +75,7 @@ export default function ShoppingCartPage({ user }) {
               <Col xs={12} md={4}>
                 <div
                   style={{
+                    backgroundColor: "",
                     position: "sticky",
                     top: "8.5%",
                     right: 0,

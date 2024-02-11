@@ -20,7 +20,7 @@ function App() {
       <NavBar user={user} setUser={setUser} />
         <Routes>
             <Route path="/" element={ <HomePage />}/>
-            <Route path="/products/:id" element={ <SingleProductPage />}/>
+            <Route path="/products/:id" element={ <SingleProductPage user={user} setUser={setUser}/>}/>
             <Route path="/products" element={ <ProductsPage user={user} setUser={setUser}/> }/>
             <Route path="/aboutus" element={ <AboutusPage /> }/>
             <Route path="/contactus" element={ <ContactusPage /> }/>

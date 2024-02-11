@@ -46,16 +46,16 @@ export default function ProductsPage({user, setUser}) {
   ? products.filter((product) => product.category === selectedCategory)
   : products;
 
-  const timeId = setTimeout(() => {
-    // After 3 seconds set the show value to false
-    setShowAddedAlert(false)
-    setShowStockAlert(false)
-  }, 2000)
+  // const timeId = setTimeout(() => {
+  //   // After 3 seconds set the show value to false
+  //   setShowAddedAlert(false)
+  //   setShowStockAlert(false)
+  // }, 2000)
 
   useEffect(() => {
     
     
-      clearTimeout(timeId)
+      // clearTimeout(timeId)
       getProducts()
     
     
@@ -147,9 +147,9 @@ export default function ProductsPage({user, setUser}) {
     <p> Item has been added to the shopping cart.</p>
     <hr />
     <div className="d-flex justify-content-end">
-      {/* <Button onClick={() => setShowAddedAlert(false)} variant="outline-success">
+      <Button onClick={() => setShowAddedAlert(false)} variant="outline-success">
         Close me
-      </Button> */}
+      </Button>
     </div>
   </Alert>
 </div>
@@ -169,9 +169,9 @@ export default function ProductsPage({user, setUser}) {
     <p> The item is currently out of stock.</p>
     <hr />
     <div className="d-flex justify-content-end">
-      {/* <Button onClick={() => setShowStockAlert(false)} variant="outline-danger">
+      <Button onClick={() => setShowStockAlert(false)} variant="outline-danger">
         Close me
-      </Button> */}
+      </Button>
     </div>
   </Alert>
 </div>
@@ -212,8 +212,6 @@ export default function ProductsPage({user, setUser}) {
                   stock={product.stock}
                   user={user}
                   setUser={setUser}
-                  handleAlertAddedChange={handleAlertAddedChange}
-                  handleAlertStockChange={handleAlertStockChange}
                 />
               ))}
         </div>

@@ -10,12 +10,11 @@ export default function TotalPaymentModal({ totalPrice }) {
 
   return (
     <Card >
-      <Card.Body >
+      <Card.Body  >
         <Card.Header style={{
             display: "flex",
             justifyContent: "center",
-            alignItems: "center",
-            
+            alignItems: "center", 
         }}>
         <h2 className="title">
         <span style={{fontSize:"22px"}} className="title-word title-word-1">Thanks for</span>

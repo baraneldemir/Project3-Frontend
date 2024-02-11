@@ -10,15 +10,21 @@ import { Alert } from "react-bootstrap"
 
 
 
-export default function ProductCard({id, name, image, price, user, stock, handleAlertAddedChange, handleAlertStockChange, setUser}) {
+export default function ProductCard({id, name, image, price, user, stock, setUser}) {
   const formattedPrice = currencyFormatter.format(price)
   const { product, addToCart, updateProductStock, isUpdated, setIsUpdated, getSingleProduct } = useProducts()
   const [localStock, setLocalStock] = useState(stock)
-  const [showSignupFormModal, setShowSignupFormModal] = useState(false);
+  const [showLoginFormModal, setShowLoginFormModal] = useState(false);
   const [showAddedAlert, setShowAddedAlert] = useState(false);
   const [showStockAlert, setShowStockAlert] = useState(false);
 
 
+  function handleAlertAddedChange() {
+    setShowAddedAlert(true)
+  }
+  function handleAlertStockChange() {
+    setShowStockAlert(true)
+  }
   
 
   const handleAddToCart = () => {
@@ -63,19 +69,19 @@ export default function ProductCard({id, name, image, price, user, stock, handle
       <Card.Footer style={{ backgroundColor: "#001F3F", borderTop: "1px solid #E6E6E6" }}>
         {user ?
         <>
-        {stock > 0 ? <Button variant="outline-light" onClick={() => {
+        {stock > 0 ? <Button disabled={showAddedAlert} variant="outline-light" onClick={() => {
           handleAddToCart()
           handleAlertAddedChange()
-          }}>Add To Shopping Cart</Button> : <Button variant="outline-danger" onClick={handleAlertStockChange}>Out of Stock</Button>}
+          }}>Add To Shopping Cart</Button> : <Button disabled={showStockAlert} variant="outline-danger" onClick={handleAlertStockChange}>Out of Stock</Button>}
         &nbsp;
         &nbsp;
        <Link to={`/products/${id}`} style={{ textDecoration: 'none' }}><Button variant="outline-light">Info</Button></Link>          
        </>
         :
         <>
-        {stock > 0 ? <Button variant="outline-light" onClick={() => {
-          setShowSignupFormModal(true)
-          }}>Add To Shopping Cart</Button> : <Button variant="outline-danger" onClick={handleAlertStockChange}>Out of Stock</Button>}
+        {stock > 0 ? <Button  disabled={showAddedAlert} variant="outline-light" onClick={() => {
+          setShowLoginFormModal(true)
+          }}>Add To Shopping Cart</Button> : <Button disabled={showStockAlert} variant="outline-danger" onClick={handleAlertStockChange}>Out of Stock</Button>}
         &nbsp;
         &nbsp;
         <Link to={`/products/${id}`} style={{ textDecoration: 'none' }}><Button variant="outline-light">Info</Button></Link> 
@@ -83,7 +89,7 @@ export default function ProductCard({id, name, image, price, user, stock, handle
       }
       </Card.Footer>
     </Card>
-    <LoginFormModal show={showSignupFormModal} handleClose={() => setShowSignupFormModal(false)} setUser={setUser} />
+    <LoginFormModal show={showLoginFormModal} handleClose={() => setShowLoginFormModal(false)} setUser={setUser} />
     <div className="alert-container" style={{ 
       position: "fixed",
       top: "50%",

@@ -2,7 +2,7 @@ import ProductCard from "../../components/ProductCard/ProductCard";
 import { Container } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import { useProducts } from "../../contexts/ProductContext";
-import { Alert } from "react-bootstrap";
+import { Alert, Button } from "react-bootstrap";
 import "../HomePage.css"
 
 export default function ProductsPage({user}) {
@@ -22,7 +22,7 @@ export default function ProductsPage({user}) {
 
 
   useEffect(() => {
-    clearTimeout(timeIdList)
+    // clearTimeout(timeIdList)
     getProducts()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -51,11 +51,11 @@ export default function ProductsPage({user}) {
     } else { return 4 }
   }
 
-  const timeIdList = setTimeout(() => {
-    // After 3 seconds set the show value to false
-    setShowAddedAlert(false)
-    setShowStockAlert(false)
-  }, 2000)
+  // const timeIdList = setTimeout(() => {
+  //   // After 3 seconds set the show value to false
+  //   setShowAddedAlert(false)
+  //   setShowStockAlert(false)
+  // }, 2000)
 
   useEffect(() => {
    
@@ -136,9 +136,9 @@ export default function ProductsPage({user}) {
     <p> The item is currently out of stock.</p>
     <hr />
     <div className="d-flex justify-content-end">
-      {/* <Button onClick={() => setShowStockAlert(false)} variant="outline-danger">
+      <Button onClick={() => setShowStockAlert(false)} variant="outline-danger">
         Close me
-      </Button> */}
+      </Button>
     </div>
   </Alert>
 </div>
