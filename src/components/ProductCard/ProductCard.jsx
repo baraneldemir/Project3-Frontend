@@ -72,7 +72,7 @@ export default function ProductCard({id, name, image, price, user, stock, setUse
         {stock > 0 ? <Button disabled={showAddedAlert} variant="outline-light" onClick={() => {
           handleAddToCart()
           handleAlertAddedChange()
-          }}>Add To Shopping Cart</Button> : <Button disabled={showStockAlert} variant="outline-danger" onClick={handleAlertStockChange}>Out of Stock</Button>}
+          }}><img style={{height: "3vh", paddingRight: "1vh", marginTop: "-0.9vh"}} src="https://cdn-icons-png.flaticon.com/512/468/468209.png" alt="logo"/>Add to Bag</Button> : <Button disabled={showStockAlert} variant="outline-danger" onClick={handleAlertStockChange}><img style={{height: "3vh", paddingRight: "1vh", marginTop: "-0.9vh"}} src="https://cdn-icons-png.flaticon.com/512/468/468209.png" alt="logo"/>Out of Stock</Button>}
         &nbsp;
         &nbsp;
        <Link to={`/products/${id}`} style={{ textDecoration: 'none' }}><Button variant="outline-light">Info</Button></Link>          
@@ -81,7 +81,7 @@ export default function ProductCard({id, name, image, price, user, stock, setUse
         <>
         {stock > 0 ? <Button  disabled={showAddedAlert} variant="outline-light" onClick={() => {
           setShowLoginFormModal(true)
-          }}>Add To Shopping Cart</Button> : <Button disabled={showStockAlert} variant="outline-danger" onClick={handleAlertStockChange}>Out of Stock</Button>}
+          }}> <img style={{height: "3vh", paddingRight: "1vh", marginTop: "-0.9vh"}} src="https://cdn-icons-png.flaticon.com/512/468/468209.png" alt="logo"/> Add to Bag</Button> : <Button disabled={showStockAlert} variant="outline-danger" onClick={handleAlertStockChange}><img style={{height: "3vh", paddingRight: "1vh", marginTop: "-0.9vh"}} src="https://cdn-icons-png.flaticon.com/512/468/468209.png" alt="logo"/>Out of Stock</Button>}
         &nbsp;
         &nbsp;
         <Link to={`/products/${id}`} style={{ textDecoration: 'none' }}><Button variant="outline-light">Info</Button></Link> 
