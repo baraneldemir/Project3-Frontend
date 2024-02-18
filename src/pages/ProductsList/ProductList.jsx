@@ -84,7 +84,7 @@ export default function ProductsPage({user}) {
             gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
             gap: "1rem",
             alignItems: "flex-start",}}>
-            {products.map((product) => (
+            {randomProducts.map((product) => (
                 <ProductCard
                   key={product._id}
                   id={product._id}

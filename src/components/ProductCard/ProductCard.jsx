@@ -12,7 +12,7 @@ import { Alert } from "react-bootstrap"
 
 export default function ProductCard({id, name, image, price, user, stock, setUser}) {
   const formattedPrice = currencyFormatter.format(price)
-  const { product, addToCart, updateProductStock, isUpdated, setIsUpdated, getSingleProduct } = useProducts()
+  const { product, addToCart, updateProductStock, setIsUpdated, getSingleProduct } = useProducts()
   const [localStock, setLocalStock] = useState(stock)
   const [showLoginFormModal, setShowLoginFormModal] = useState(false);
   const [showAddedAlert, setShowAddedAlert] = useState(false);
