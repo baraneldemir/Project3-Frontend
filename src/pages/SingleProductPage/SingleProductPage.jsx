@@ -6,7 +6,7 @@ import { currencyFormatter } from "../../utilities/currencyFormatter"
 
 
 export default function SingleProductPage({user, setUser}) {
-    const {product, getSingleProduct, addToCart, updateProductStock, isUpdated, setIsUpdated} = useProducts()
+    const {product, setProduct, getSingleProduct, addToCart, updateProductStock, isUpdated, setIsUpdated} = useProducts()
     const { id } = useParams()
     const formattedPrice = currencyFormatter.format(product.price)
     const [productStock, setProductStock] = useState(product.stock)
@@ -24,12 +24,14 @@ export default function SingleProductPage({user, setUser}) {
     }
 
     useEffect(() => {
+      console.log(id)
       getSingleProduct(id)
       setIsUpdated(false)
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isUpdated])
 
     useEffect(() => {
+     console.log(product)
       if (product) {
         setProductStock(product.stock);
         setIsUpdated(false)
@@ -60,7 +62,7 @@ export default function SingleProductPage({user, setUser}) {
                               <></>
                             }
                             &nbsp;
-                            <Link to={'/products'} ><Button variant="secondary" >Back to Products</Button></Link>
+                            <Link to={'/products'}><Button onClick={()=>setProduct(null)}variant="secondary">Back to Products</Button></Link>
                             </Card.Footer>
                         </Card>
                     </Col>

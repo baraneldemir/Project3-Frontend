@@ -39,13 +39,14 @@ export default function ProductCard({id, name, image, price, user, stock, setUse
     }
   }
 
-  useEffect(() => {
-    getSingleProduct(id)
-    setIsUpdated(false)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isUpdated])
+  // useEffect(() => {
+  //   getSingleProduct(id)
+  //   setIsUpdated(false)
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [isUpdated])
 
   useEffect(() => {
+
     if (product) {
       setLocalStock(stock);
       setIsUpdated(false)

@@ -1,5 +1,6 @@
-import { useContext, createContext, useState } from "react"
+import { useContext, createContext, useState, useEffect } from "react"
 import axios from "axios"
+
 
 const ProductContext = createContext()
 
@@ -13,6 +14,7 @@ export const ProductsProvider = ({children}) => {
     const [cart, setCart] = useState()
     const [isUpdated, setIsUpdated] = useState()
     const [result, setResult] = useState(false)
+
 
 
 
@@ -60,7 +62,7 @@ export const ProductsProvider = ({children}) => {
     }
 
     function getSingleProduct(productId) {
-        
+       
         axios.get(`${process.env.REACT_APP_BACKEND_URL}/products/${productId}`)
         .then(response => { 
             setProduct(response.data)
@@ -111,6 +113,7 @@ export const ProductsProvider = ({children}) => {
     return (
         <ProductContext.Provider value={{
             product,
+            setProduct,
             products,
             cart,
             getProducts,
