@@ -6,7 +6,8 @@ import { currencyFormatter } from "../../utilities/currencyFormatter"
 
 
 export default function SingleProductPage({user, setUser}) {
-    const {product, setProduct, getSingleProduct, addToCart, updateProductStock, isUpdated, setIsUpdated} = useProducts()
+  // setProduct
+    const {product, getSingleProduct, addToCart, updateProductStock, isUpdated, setIsUpdated} = useProducts()
     const { id } = useParams()
     const formattedPrice = currencyFormatter.format(product.price)
     const [productStock, setProductStock] = useState(product.stock)
@@ -62,8 +63,9 @@ export default function SingleProductPage({user, setUser}) {
                               <></>
                             }
                             &nbsp;
-                            <Link to={'/products'}><Button onClick={()=>setProduct(null)}variant="secondary">Back to Products</Button></Link>
+                            <Link to={'/products'}><Button variant="secondary">Back to Products</Button></Link>
                             </Card.Footer>
+                            {/* getSingleProduct(id) */}
                         </Card>
                     </Col>
                 </Row>
