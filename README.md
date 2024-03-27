@@ -329,11 +329,11 @@ With all these, we had a fully functioning CRUD application. where users were ab
 
 
 
-### Challenges
+## Challenges
 
 It was a real challange to adapt with people and having collaborators. Especially at the beginning it was hard to manage all the pull push and merge requests. But we get along with it really quickly. I think as for me the biggest challange was relating the carts and users where each product would decrease from the stock and show up in someone's cart. Considering how much time we had it was really challenging to build this kind of a project in a few days. Time made it harder to develop everything we were aiming for.
 
-### Wins
+## Wins
 I thing the biggest win of mine from this project was to see how capable we were to work in collaborative. We made a great team, everyone was able to get along. We were very organised. We kept a routine of checking GitHub and the pull requests 2 to 3 times a day to prevent conflicts.
 
 Another win for me was to get used to authentication and play around credentials. Which was really frustrating to get into for me before this project. 
